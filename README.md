@@ -1,8 +1,8 @@
-# Express Template with TypeScript, Prisma, and Security Best Practices
+# 🚀 Express Template with TypeScript, Prisma, and Security Best Practices
 
 Welcome to the Express Template! This template is designed to help backend developers quickly set up a robust and secure Express application using TypeScript, Prisma, and various security best practices. Whether you're starting a new open-source project or building a production-ready application, this template has you covered.
 
-## Features
+## ✨ Features
 
 - **TypeScript**: Strongly typed language that helps catch errors early and improves code quality.
 - **Prisma**: Modern database toolkit that simplifies database access and migrations.
@@ -12,7 +12,7 @@ Welcome to the Express Template! This template is designed to help backend devel
 - **Testing**: Set up with Jest for unit and integration tests.
 - **Docker Support**: Docker Compose configuration for easy setup and deployment.
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
@@ -59,7 +59,7 @@ Welcome to the Express Template! This template is designed to help backend devel
     pnpm start
     ```
 
-### Using Docker
+### 🐳 Using Docker
 
 1. **Build and run the containers**:
     ```bash
@@ -68,7 +68,7 @@ Welcome to the Express Template! This template is designed to help backend devel
 
 2. The application will be available at `http://localhost:3000`.
 
-### Prisma Setup
+### 📚 Prisma Setup
 
 1. **Generate Prisma client**:
     ```bash
@@ -80,7 +80,7 @@ Welcome to the Express Template! This template is designed to help backend devel
     npx prisma migrate dev
     ```
 
-### Project Structure
+### 📂 Project Structure
 
 - **src**: Contains the source code.
   - **controllers**: Define the request handlers.
@@ -89,22 +89,22 @@ Welcome to the Express Template! This template is designed to help backend devel
 - **prisma**: Prisma schema and migrations.
 - **tests**: Test files.
 
-### Security Features
+### 🔒 Security Features
 
 - **Helmet**: Adds security headers to HTTP responses.
 - **Rate Limiting**: Limits the number of requests from a single IP.
 - **Input Validation**: Validates and sanitizes user input using `express-validator`.
 - **Mongo Sanitize**: Prevents MongoDB Operator Injection.
 
-### Contributing
+### 🤝 Contributing
 
 We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more information.
 
-### License
+### 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Conclusion
+## 🎉 Conclusion
 
 This template is a powerful starting point for any backend developer looking to build a secure and scalable Express application. With TypeScript, Prisma, and a suite of security best practices, you can focus on building features rather than setting up boilerplate code. Happy coding!
 
