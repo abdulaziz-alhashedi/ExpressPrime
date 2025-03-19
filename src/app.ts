@@ -8,6 +8,9 @@ import mongoSanitize from 'express-mongo-sanitize';
 import { config } from 'dotenv';
 import authRoutes from './routes/auth.routes';
 import logger from './utils/logger';
+import { AppError } from './types/errors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json';
 
 config();
 
@@ -35,6 +38,7 @@ app.use(limiter);
 
 // Routes
 app.use('/api', authRoutes); // add other routers as needed
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -44,6 +48,12 @@ app.get('/api/health', (req, res) => {
 // Global error handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error(err);
+  if (err instanceof AppError) {
+    return res.status(err.statusCode).json({
+      message: err.message,
+      ...(err.details && { details: err.details })
+    });
+  }
   res.status(500).json({ error: 'Internal Server Error' });
 });
 

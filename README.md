@@ -96,6 +96,111 @@ Welcome to the Express Template! This template is designed to help backend devel
 - **Input Validation**: Validates and sanitizes user input using `express-validator`.
 - **Mongo Sanitize**: Prevents MongoDB Operator Injection.
 
+## Advanced Usage
+
+### Running Tests
+Run the test suite to validate the health of the application:
+```bash
+npm test
+```
+
+### Database Migrations and Prisma Commands
+Use Prisma to manage your database schema:
+- Generate Prisma client:
+  ```bash
+  npx prisma generate
+  ```
+- Run migrations:
+  ```bash
+  npx prisma migrate dev
+  ```
+- Open Prisma Studio to inspect your data:
+  ```bash
+  npx prisma studio
+  ```
+
+### Authentication Examples
+Use the provided auth routes as a reference to build secure authentication:
+- Register a new user:
+  ```bash
+  curl -X POST http://localhost:3000/api/register -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "password123"}'
+  ```
+- Log in as a user:
+  ```bash
+  curl -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "password123"}'
+  ```
+
+### Full Power Usage for Backend Developers
+
+This section details how to harness the full power of the template, with examples and best practices for backend development.
+
+#### Logging
+- The template uses Winston for logging. All logs are output to the console.
+- Extend logging by modifying `src/utils/logger.ts` to fit your needs.
+
+#### Authentication & Authorization
+- Use the provided auth endpoints to secure your application.
+- Example endpoints:
+  - **Register a new user:**
+    ```bash
+    curl -X POST http://localhost:3000/api/register \
+    -H "Content-Type: application/json" \
+    -d '{"email": "backend@user.com", "password": "strongpassword"}'
+    ```
+  - **Login as a user:**
+    ```bash
+    curl -X POST http://localhost:3000/api/login \
+    -H "Content-Type: application/json" \
+    -d '{"email": "backend@user.com", "password": "strongpassword"}'
+    ```
+
+#### Testing and Quality Assurance
+- Run the test suite using:
+  ```bash
+  npm test
+  ```
+- Extend tests by adding files in the `tests` folder.
+- Use ESLint and Prettier (configured via `npm run lint` and `npm run format`) to maintain code quality.
+
+#### Database Management with Prisma
+- **Generate Prisma Client:**
+  ```bash
+  npx prisma generate
+  ```
+- **Run Migrations:**
+  ```bash
+  npx prisma migrate dev
+  ```
+- **Seed the Database:**
+  ```bash
+  npx prisma db seed
+  ```
+- Use Prisma Studio to inspect your data:
+  ```bash
+  npx prisma studio
+  ```
+
+#### Custom Middlewares and Extensions
+- Add new express middlewares under `src/middlewares` to implement additional security, logging, or business logic.
+- Extend the existing routes and controllers by following the established folder structure.
+
+#### Deployment Best Practices
+- For production, build the application using:
+  ```bash
+  npm run build
+  ```
+- Start the production server with:
+  ```bash
+  npm start
+  ```
+- Ensure environment variables in `.env` are properly configured for production.
+
+### Customization and Extension
+Leverage the structure of the template:
+- Add new routes in the `src/routes` folder.
+- Extend the logging functionality in `src/utils/logger.ts` if needed.
+- Create additional controllers and middlewares to suit your business logic.
+
 ### 🤝 Contributing
 
 We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more information.
