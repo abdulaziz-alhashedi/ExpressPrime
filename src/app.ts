@@ -47,21 +47,25 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
-// Connect to database and start server
-const PORT = process.env.PORT || 3000;
-prisma.$connect().then(() => {
-  const server = app.listen(PORT, () => {
-    logger.info(`Server running on port ${PORT}`);
-  });
-
-  // Graceful shutdown
-  const shutdown = () => {
-    server.close(async () => {
-      await prisma.$disconnect();
-      process.exit(0);
+// Start the server only if this file is executed directly
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  prisma.$connect().then(() => {
+    const server = app.listen(PORT, () => {
+      logger.info(`Server running on port ${PORT}`);
     });
-  };
 
-  process.on('SIGINT', shutdown);
-  process.on('SIGTERM', shutdown);
-});
+    // Graceful shutdown
+    const shutdown = () => {
+      server.close(async () => {
+        await prisma.$disconnect();
+        process.exit(0);
+      });
+    };
+
+    process.on('SIGINT', shutdown);
+    process.on('SIGTERM', shutdown);
+  });
+}
+
+export default app;
