@@ -5,9 +5,9 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/health": {
+    "/api/v1/health": {
       "get": {
-        "summary": "Health Check",
+        "summary": "Health Check with uptime",
         "responses": {
           "200": {
             "description": "OK"
@@ -15,7 +15,7 @@
         }
       }
     },
-    "/api/register": {
+    "/api/v1/register": {
       "post": {
         "summary": "Register a new user",
         "responses": {
@@ -28,7 +28,7 @@
         }
       }
     },
-    "/api/login": {
+    "/api/v1/login": {
       "post": {
         "summary": "User login",
         "responses": {

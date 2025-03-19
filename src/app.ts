@@ -11,6 +11,8 @@ import logger from './utils/logger';
 import { AppError } from './types/errors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
+import { v4 as uuidv4 } from 'uuid';
+import externalRoutes from './routes/external.routes';  // <-- added external routes
 
 config();
 
@@ -19,13 +21,27 @@ const app = express();
 
 // Middlewares
 app.use(helmet());
-app.use(cors());
+app.use(
+	cors({
+		origin: process.env.CORS_ORIGIN || '*',    // <-- using CORS config option
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		credentials: true
+	})
+);
 app.use(json());
 app.use(mongoSanitize());
 
-// New logging middleware: logs each incoming request
+// Request tracing middleware
 app.use((req, res, next) => {
-  logger.info(`${req.method} ${req.url}`);
+  const traceId = uuidv4();
+  req.headers['x-trace-id'] = traceId;
+  res.setHeader('X-Trace-Id', traceId);
+  next();
+});
+
+// Logging middleware
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.url} - TraceID: ${req.headers['x-trace-id']}`);
   next();
 });
 
@@ -36,13 +52,14 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Routes
-app.use('/api', authRoutes); // add other routers as needed
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// API Versioning: All routes now under /api/v1
+app.use('/api/v1', authRoutes);
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/v1/external', externalRoutes);       // <-- mount external routes
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK' });
+// Health check endpoint (versioned)
+app.get('/api/v1/health', (req, res) => {
+  res.json({ status: 'OK', uptime: process.uptime() });
 });
 
 // Global error handler
