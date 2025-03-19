@@ -95,6 +95,7 @@ Welcome to the Express Template! This template is designed to help backend devel
 - **Rate Limiting**: Limits the number of requests from a single IP.
 - **Input Validation**: Validates and sanitizes user input using `express-validator`.
 - **Mongo Sanitize**: Prevents MongoDB Operator Injection.
+- **External API**: The `/api/v1/external` endpoint is protected by API key authentication. Set your API key in the `.env` file (`API_KEY`) and include it in the `x-api-key` header.
 
 ## Advanced Usage
 
@@ -128,6 +129,13 @@ Use the provided auth routes as a reference to build secure authentication:
 - Log in as a user:
   ```bash
   curl -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "password123"}'
+  ```
+- **External API Example**:
+  ```bash
+  curl -X POST http://localhost:3000/api/v1/external \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-external-api-key" \
+  -d '{"data": "your data"}'
   ```
 
 ### Full Power Usage for Backend Developers
