@@ -5,7 +5,6 @@ import rateLimit from 'express-rate-limit';
 
 const router = Router();
 
-// Rate limiter for login endpoint
 const loginLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
 	max: 5,

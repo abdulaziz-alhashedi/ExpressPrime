@@ -12,18 +12,17 @@ import { AppError } from './types/errors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import { v4 as uuidv4 } from 'uuid';
-import externalRoutes from './routes/external.routes';  // <-- added external routes
+import externalRoutes from './routes/external.routes';  
 
 config();
 
 const prisma = new PrismaClient();
 const app = express();
 
-// Middlewares
 app.use(helmet());
 app.use(
 	cors({
-		origin: process.env.CORS_ORIGIN || '*',    // <-- using CORS config option
+		origin: process.env.CORS_ORIGIN || '*',    
 		methods: ['GET', 'POST', 'PUT', 'DELETE'],
 		credentials: true
 	})
@@ -31,7 +30,6 @@ app.use(
 app.use(json());
 app.use(mongoSanitize());
 
-// Request tracing middleware
 app.use((req, res, next) => {
   const traceId = uuidv4();
   req.headers['x-trace-id'] = traceId;
@@ -39,30 +37,25 @@ app.use((req, res, next) => {
   next();
 });
 
-// Logging middleware
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.url} - TraceID: ${req.headers['x-trace-id']}`);
   next();
 });
 
-// Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
 app.use(limiter);
 
-// API Versioning: All routes now under /api/v1
 app.use('/api/v1', authRoutes);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1/external', externalRoutes);       // <-- mount external routes
+app.use('/api/v1/external', externalRoutes);       
 
-// Health check endpoint (versioned)
 app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'OK', uptime: process.uptime() });
 });
 
-// Global error handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error(err);
   if (err instanceof AppError) {
@@ -74,7 +67,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
-// Start the server only if this file is executed directly
+
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   prisma.$connect().then(() => {
@@ -82,7 +75,7 @@ if (require.main === module) {
       logger.info(`Server running on port ${PORT}`);
     });
 
-    // Graceful shutdown
+    
     const shutdown = () => {
       server.close(async () => {
         await prisma.$disconnect();

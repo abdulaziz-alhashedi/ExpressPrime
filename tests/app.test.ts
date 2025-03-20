@@ -29,7 +29,7 @@ describe('POST /api/register', () => {
 
 describe('POST /api/login', () => {
   it('should login a registered user', async () => {
-    // First register a user for login
+    
     await request(app)
       .post('/api/register')
       .send({ email: "login@test.com", password: "password123" });
