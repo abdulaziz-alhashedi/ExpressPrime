@@ -79,6 +79,7 @@ Welcome to the Express Template! This template is designed to help backend devel
     ```bash
     npx prisma migrate dev
     ```
+    <!-- Note: After any schema changes (e.g., adding the Task model), be sure to run migrations to update your database. -->
 
 ### 📂 Project Structure
 
