@@ -13,6 +13,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import { v4 as uuidv4 } from 'uuid';
 import externalRoutes from './routes/external.routes';  
+import userRoutes from './routes/user.routes'; // new import
 
 config();
 
@@ -50,7 +51,8 @@ app.use(limiter);
 
 app.use('/api/v1', authRoutes);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1/external', externalRoutes);       
+app.use('/api/v1/external', externalRoutes);
+app.use('/api/v1/users', userRoutes); // mount user routes
 
 app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'OK', uptime: process.uptime() });
