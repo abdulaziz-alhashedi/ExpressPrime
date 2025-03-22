@@ -18,6 +18,13 @@ Welcome to the Express Template! This project is designed to help backend develo
 - **Robust Logging & Error Handling**: All errors are logged with Winston and custom error classes manage response codes.
 - **Testing**: Jest and Supertest are preconfigured for unit and integration tests.
 
+## ✨ Updated Architecture
+
+- **Service Layer**: Business logic is now separated into the `/src/services` directory for better modularity and easier testing.
+- **CLI Tools**: New scripts in `/scripts` (e.g., `generateApi.ts` and `createAdmin.ts`) to scaffold APIs and securely create admin users.
+- **Enhanced Security & Error Handling**: Custom error classes, rate limiters, and security middlewares ensure robust and secure operations.
+- **Improved Logging**: Centralized logging using Winston for both console and file outputs.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
@@ -116,6 +123,17 @@ npm test
 ```
 
 ## 📂 Project Structure
+
+```
+...existing tree structure...
+├── src
+│   ├── controllers           // Slimmed controllers that delegate to services
+│   ├── middlewares           // Security, validation, and rate limiting
+│   ├── routes                // API route definitions
+│   ├── services              // New service layer with business logic
+│   └── utils                 // Utility functions & configurations
+...existing code...
+```
 
 - **src**: Contains controllers, routes, middlewares, and utilities.
 - **prisma**: Holds the Prisma schema and migration files.
