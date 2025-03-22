@@ -22,7 +22,7 @@ export const getUsers = async (req: Request, res: Response, next: NextFunction) 
     const users = await prisma.user.findMany();
     res.json(users);
   } catch (error) {
-    next(new AppError('Failed to get users', 500, true, error));
+    next(new AppError('Failed to get users', 500, 'APP_ERROR', true, error));
   }
 };
 
@@ -42,7 +42,7 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
 
 		res.json(user);
 	} catch (error) {
-		next(new AppError('Failed to get user', 500, true, error));
+		next(new AppError('Failed to get user', 500, 'APP_ERROR', true, error));
 	}
 };
 
@@ -74,7 +74,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     res.status(201).json(newUser);
   } catch (error) {
     logger.error('Failed to create user', error);
-    next(new AppError('Failed to create user', 500, true, error));
+    next(new AppError('Failed to create user', 500, 'APP_ERROR', true, error));
   }
 };
 
@@ -123,7 +123,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     res.json(updatedUser);
   } catch (error) {
     logger.error(`Failed to update user ${req.params.id}`, error);
-    next(new AppError('Failed to update user', 500, true, error));
+    next(new AppError('Failed to update user', 500, 'APP_ERROR', true, error));
   }
 };
 
@@ -152,6 +152,6 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
 
 		res.status(204).send();
 	} catch (error) {
-		next(new AppError('Failed to delete user', 500, true, error));
+		next(new AppError('Failed to delete user', 500, 'APP_ERROR', true, error));
 	}
 };

@@ -38,7 +38,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 		
 		res.status(201).json({ id: user.id, email: user.email, token });
 	} catch (error) {
-		next(new AppError('Registration failed', 500, true, error));
+		next(new AppError('Registration failed', 500, 'APP_ERROR', true, error));
 	}
 };
 
@@ -57,6 +57,6 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 		res.json({ token });
 	} catch (error) {
-		next(new AppError('Login failed', 500, true, error));
+		next(new AppError('Login failed', 500, 'APP_ERROR', true, error));
 	}
 };

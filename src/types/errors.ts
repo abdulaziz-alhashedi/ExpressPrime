@@ -6,17 +6,36 @@ export interface ErrorDetails {
 
 export class AppError extends Error {
   public readonly statusCode: number;
-  public readonly isOperational: boolean;
-  public readonly details?: ErrorDetails;
   public readonly errorCode: string;
+  public readonly isOperational: boolean;
+  public readonly details?: any;
+  public readonly timestamp: Date;
 
-  constructor(message: string, statusCode: number, errorCode: string, isOperational = true, details?: ErrorDetails) {
+  constructor(
+    message: string,
+    statusCode: number,
+    errorCode: string = 'APP_ERROR',
+    isOperational = true,
+    details?: any
+  ) {
     super(message);
     this.statusCode = statusCode;
     this.errorCode = errorCode;
     this.isOperational = isOperational;
     this.details = details;
+    this.timestamp = new Date();
     Error.captureStackTrace(this, this.constructor);
+  }
+
+  // New method to return a sanitized error object
+  toJSON() {
+    return {
+      message: this.message,
+      statusCode: this.statusCode,
+      errorCode: this.errorCode,
+      timestamp: this.timestamp,
+      ...(this.details && { details: this.details })
+    };
   }
 }
 
