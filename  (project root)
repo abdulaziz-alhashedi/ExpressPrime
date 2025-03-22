@@ -1,7 +1,8 @@
 d:\express_F_S
 ├── prisma
 │   ├── schema.prisma         // Prisma schema & migrations
-│   └── seed.ts               // Seed file
+│   ├── seed.ts               // Seed file
+│   └── schema_exammple.prisma // Example Prisma schema
 ├── scripts
 │   ├── createAdmin.ts        // Admin creation script
 │   └── generateApi.ts        // API generation tool
@@ -26,6 +27,12 @@ d:\express_F_S
 │       └── prisma.ts
 ├── tests                     // Integration & unit tests
 │   └── app.test.ts
-├── README.md                 // Project documentation
+├── docs                      // Documentation & API reference files
+│   ├── swagger.yaml          // Swagger API documentation
+│   ├── Express Template API.postman_collection.json // Postman collection
+│   └── update.md             // Project update & recommendations
 ├── package.json              // Project configuration and scripts
-└── .env                   	// Environment variables
+├── tsconfig.json             // TypeScript configuration
+├── .env                      // Environment variables
+├── .env.example              // Environment example file
+└── README.md                 // Project documentation
