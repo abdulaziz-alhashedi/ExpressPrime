@@ -89,3 +89,20 @@ describe('GET /api/v1/nonexistent', () => {
     expect(res.body).toHaveProperty('message');
   });
 });
+
+describe('Unit tests for auth.service', () => {
+  const { registerUser } = require('../src/services/auth.service');
+
+  it('should throw an error when registering with a weak password', async () => {
+    await expect(registerUser('unit@example.com', 'weakpass')).rejects.toThrow(/weak/);
+  });
+});
+
+describe('Unit tests for user.service', () => {
+  const { getAllUsers } = require('../src/services/user.service');
+
+  it('should return an array when retrieving all users', async () => {
+    const users = await getAllUsers();
+    expect(Array.isArray(users)).toBe(true);
+  });
+});
