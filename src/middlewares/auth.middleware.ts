@@ -1,24 +1,31 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { prisma } from '../utils/prisma';
 import { AppError } from '../types/errors';
 
-export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
-	// Expect token in Authorization header in the format: Bearer <token>
-	const authHeader = req.headers.authorization;
-	if (!authHeader) {
-		return next(new AppError("No token provided", 401));
-	}
-	const parts = authHeader.split(' ');
-	if (parts.length !== 2 || parts[0] !== 'Bearer') {
-		return next(new AppError("Invalid token format", 401));
-	}
-	const token = parts[1];
-	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-		// Optionally, attach decoded payload to req
-		(req as any).user = decoded;
-		next();
-	} catch (err) {
-		return next(new AppError("Invalid token", 401));
-	}
+export const authenticateJWT = async (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+
+    jwt.verify(token, process.env.JWT_SECRET!, async (err, user: any) => {
+      if (err) {
+        return next(new AppError('Invalid token', 403));
+      }
+
+      try {
+        const dbUser = await prisma.user.findUnique({ where: { id: user.userId } });
+        if (!dbUser) {
+          return next(new AppError('User not found', 401));
+        }
+        (req as any).user = dbUser;
+        next();
+      } catch (error) {
+        return next(new AppError('Internal server error', 500));
+      }
+    });
+  } else {
+    return next(new AppError('Token not provided', 401));
+  }
 };

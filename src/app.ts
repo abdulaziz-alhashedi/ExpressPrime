@@ -49,8 +49,9 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use('/api/v1', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+console.log("Swagger Document:", JSON.stringify(swaggerDocument, null, 2)); // Add this line
 app.use('/api/v1/external', externalRoutes);
 app.use('/api/v1/users', userRoutes); // mount user routes
 

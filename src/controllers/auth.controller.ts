@@ -3,37 +3,37 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { prisma } from '../utils/prisma';
 import { AppError, AuthenticationError } from '../types/errors';
+import { Role } from '@prisma/client'; 
+
+const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 12;
+
+function isStrongPassword(password: string): boolean {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/.test(password);
+}
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { email, password, role } = req.body;
-		// Default to 'USER' role
-		let roleToAssign = 'USER';
-		// If the request tries to register an admin, validate the special admin key
-		if (role && role === 'ADMIN') {
-			const adminKey = req.headers['x-admin-key'];
-			if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
-				return next(new AppError('Invalid admin key', 403));
-			}
-			roleToAssign = 'ADMIN';
+		const { email, password } = req.body;
+		const roleToAssign = 'USER';
+
+		if (!isStrongPassword(password)) {
+			return next(new AppError('Provided password is weak. Please provide a stronger password with minimum 10 characters, including uppercase, lowercase, numeric digit, and special character.', 400));
 		}
 		
-		// Check if user already exists
 		const existingUser = await prisma.user.findUnique({ where: { email } });
 		if (existingUser) {
 			return next(new AppError('User already exists', 400));
 		}
 		
-		const hashedPassword = await bcrypt.hash(password, 10);
+		const hashedPassword = await bcrypt.hash(password, saltRounds);
 		const user = await prisma.user.create({
 			data: { 
 				email, 
 				password: hashedPassword,
-				role: roleToAssign
+				role: roleToAssign as Role 
 			}
 		});
 		
-		// Generate a JWT token for the new user
 		const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
 		
 		res.status(201).json({ id: user.id, email: user.email, token });

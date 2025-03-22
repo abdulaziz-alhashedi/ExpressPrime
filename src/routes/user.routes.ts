@@ -6,7 +6,6 @@ import { authenticateJWT } from '../middlewares/auth.middleware';
 
 const router = Router();
 
-// Protect all routes with JWT authentication
 router.use(authenticateJWT);
 
 router.get('/', getUsers);
