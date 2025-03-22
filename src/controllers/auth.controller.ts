@@ -71,7 +71,7 @@ export const refreshTokenHandler = async (req: Request, res: Response, next: Nex
     if (!refreshToken) {
       return next(new AppError('Refresh token missing', 400));
     }
-    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!, (err, payload: any) => {
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!, (err: jwt.VerifyErrors | null, payload: any) => {
       if (err) {
         return next(new AppError('Invalid refresh token', 403));
       }
