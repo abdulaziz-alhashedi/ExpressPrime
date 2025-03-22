@@ -44,8 +44,31 @@
           "message": {
             "type": "string"
           },
+          "errorCode": {
+            "type": "string",
+            "enum": [
+              "VALIDATION_ERROR",
+              "AUTH_ERROR",
+              "FORBIDDEN_ERROR",
+              "NOT_FOUND_ERROR",
+              "DATABASE_ERROR",
+              "RATE_LIMIT_ERROR",
+              "CONFLICT_ERROR"
+            ]
+          },
           "details": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "field": {
+                "type": "string"
+              },
+              "info": {
+                "type": "object"
+              }
+            }
           }
         }
       },
