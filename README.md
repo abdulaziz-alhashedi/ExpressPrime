@@ -1,224 +1,135 @@
 # 🚀 Express Template with TypeScript, Prisma, and Security Best Practices
 
-Welcome to the Express Template! This template is designed to help backend developers quickly set up a robust and secure Express application using TypeScript, Prisma, and various security best practices. Whether you're starting a new open-source project or building a production-ready application, this template has you covered.
+Welcome to the Express Template! This project is designed to help backend developers quickly set up a secure and scalable Express application using TypeScript, Prisma, and modern security practices.
 
 ## ✨ Features
 
-- **TypeScript**: Strongly typed language that helps catch errors early and improves code quality.
-- **Prisma**: Modern database toolkit that simplifies database access and migrations.
-- **Security Best Practices**: Includes middleware for security headers, rate limiting, input validation, and more.
-- **Environment Configuration**: Uses `dotenv` for environment variable management.
-- **Linting and Formatting**: Pre-configured with ESLint and Prettier for consistent code style.
-- **Testing**: Set up with Jest for unit and integration tests.
-- **Docker Support**: Docker Compose configuration for easy setup and deployment.
+- **TypeScript Support**: Strongly typed code for improved quality.
+- **Prisma ORM**: Simplifies database access, migrations, and modeling.
+- **Enhanced Security**:
+  - Strong password policies with regex validation and bcrypt hashing.
+  - Role-based access control: Admin-only endpoints and controlled user creation.
+  - Security middlewares: Helmet, rate limiting, and input sanitization.
+- **API Documentation**: OpenAPI 3.0 (Swagger) documentation is available.
+- **Postman Integration**: A complete Postman collection with dynamic URL configuration.
+- **Utility Scripts**:
+  - API Generator: Quickly scaffold new endpoints (routes, controllers, models).
+  - Admin Creation Script: Create an admin account securely via the CLI.
+- **Robust Logging & Error Handling**: All errors are logged with Winston and custom error classes manage response codes.
+- **Testing**: Jest and Supertest are preconfigured for unit and integration tests.
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
 
 - Node.js (>= 14.x)
+- PostgreSQL (or your database configured via Prisma)
 - Docker (optional, for containerized development)
-- PostgreSQL (if not using Docker)
 
 ### Installation
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/abdulaziz-alhashedi/express_F_S/.git
-    cd express-template
+    git clone https://github.com/abdulaziz-alhashedi/express_F_S.git
+    cd express_F_S
     ```
 
 2. **Install dependencies**:
     - Using pnpm:
-    ```bash
-    pnpm install
-    ```
+      ```bash
+      pnpm install
+      ```
     - Using npm:
-    ```bash
-    npm install
-    ```
+      ```bash
+      npm install
+      ```
     - Using yarn:
-    ```bash
-    yarn install
-    ```
+      ```bash
+      yarn install
+      ```
 
 3. **Set up environment variables**:
-    - Copy the `.env.example` file to `.env` and fill in the required values.
+    - Copy the `.env.example` to `.env` and update the values:
+      ```bash
+      cp .env.example .env
+      ```
+
+4. **Database Setup with Prisma**:
     ```bash
-    cp .env.example .env
+    npx prisma generate
+    npx prisma migrate dev
     ```
 
-4. **Run the application**:
-    - For development:
-    ```bash
-    pnpm dev
-    ```
-    - For production:
-    ```bash
-    pnpm build
-    pnpm start
-    ```
+### Running the Application
 
-### 🐳 Using Docker
+- **Development**:
+  ```bash
+  pnpm dev
+  ```
+- **Production**:
+  ```bash
+  pnpm build
+  pnpm start
+  ```
 
-1. **Build and run the containers**:
+### Using Docker
+
+1. **Build and run containers**:
     ```bash
     docker-compose up --build
     ```
+2. The app will be accessible at `http://localhost:3000`.
 
-2. The application will be available at `http://localhost:3000`.
+## 📚 API Documentation
 
-### 📚 Prisma Setup
+- **Swagger (OpenAPI 3.0)**:  
+  Access at [http://localhost:3000/api/v1/docs](http://localhost:3000/api/v1/docs)
 
-1. **Generate Prisma client**:
-    ```bash
-    npx prisma generate
-    ```
+- **Postman Collection**:  
+  Import the provided Postman collection (`postman_collection.json`) and configure the `{{base_url}}` variable as needed.
 
-2. **Run migrations**:
-    ```bash
-    npx prisma migrate dev
-    ```
-    <!-- Note: After any schema changes (e.g., adding the Task model), be sure to run migrations to update your database. -->
+## ⚙️ Utility Scripts
 
-### 📂 Project Structure
+- **Generate New API Endpoint**:  
+  Run the CLI tool to scaffold a new API:
+  ```bash
+  ts-node scripts/generateApi.ts
+  ```
 
-- **src**: Contains the source code.
-  - **controllers**: Define the request handlers.
-  - **middlewares**: Custom middleware functions.
-  - **utils**: Utility functions and configurations.
-- **prisma**: Prisma schema and migrations.
-- **tests**: Test files.
+- **Create an Admin User**:  
+  Use the CLI admin script:
+  ```bash
+  ts-node scripts/createAdmin.ts
+  ```
 
-### 🔒 Security Features
+## 🔒 Security & Role-Based Access
 
-- **Helmet**: Adds security headers to HTTP responses.
-- **Rate Limiting**: Limits the number of requests from a single IP.
-- **Input Validation**: Validates and sanitizes user input using `express-validator`.
-- **Mongo Sanitize**: Prevents MongoDB Operator Injection.
-- **External API**: The `/api/v1/external` endpoint is protected by API key authentication. Set your API key in the `.env` file (`API_KEY`) and include it in the `x-api-key` header.
+- Users registering via `/api/v1/auth/register` are forced to have the role `USER`.
+- Only admin users can create, update, or delete other users via `/api/v1/users`.
+- A dedicated middleware (`authenticateJWT`) and role checks ensure only authorized access to admin endpoints.
 
-## Advanced Usage
+## 🧪 Running Tests
 
-### Running Tests
-Run the test suite to validate the health of the application:
+Execute the test suite with:
 ```bash
 npm test
 ```
 
-### Database Migrations and Prisma Commands
-Use Prisma to manage your database schema:
-- Generate Prisma client:
-  ```bash
-  npx prisma generate
-  ```
-- Run migrations:
-  ```bash
-  npx prisma migrate dev
-  ```
-- Open Prisma Studio to inspect your data:
-  ```bash
-  npx prisma studio
-  ```
+## 📂 Project Structure
 
-### Authentication Examples
-Use the provided auth routes as a reference to build secure authentication:
-- Register a new user:
-  ```bash
-  curl -X POST http://localhost:3000/api/register -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "password123"}'
-  ```
-- Log in as a user:
-  ```bash
-  curl -X POST http://localhost:3000/api/login -H "Content-Type: application/json" -d '{"email": "user@example.com", "password": "password123"}'
-  ```
-- **External API Example**:
-  ```bash
-  curl -X POST http://localhost:3000/api/v1/external \
-  -H "Content-Type: application/json" \
-  -H "x-api-key: your-external-api-key" \
-  -d '{"data": "your data"}'
-  ```
+- **src**: Contains controllers, routes, middlewares, and utilities.
+- **prisma**: Holds the Prisma schema and migration files.
+- **scripts**: Includes CLI scripts for API generation and admin creation.
+- **tests**: Contains automated tests for API endpoints.
+- **CHANGELOG.md**: Summarizes recent changes.
 
-### Full Power Usage for Backend Developers
+## 🤝 Contributing
 
-This section details how to harness the full power of the template, with examples and best practices for backend development.
+We welcome contributions! Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-#### Logging
-- The template uses Winston for logging. All logs are output to the console.
-- Extend logging by modifying `src/utils/logger.ts` to fit your needs.
-
-#### Authentication & Authorization
-- Use the provided auth endpoints to secure your application.
-- Example endpoints:
-  - **Register a new user:**
-    ```bash
-    curl -X POST http://localhost:3000/api/register \
-    -H "Content-Type: application/json" \
-    -d '{"email": "backend@user.com", "password": "strongpassword"}'
-    ```
-  - **Login as a user:**
-    ```bash
-    curl -X POST http://localhost:3000/api/login \
-    -H "Content-Type: application/json" \
-    -d '{"email": "backend@user.com", "password": "strongpassword"}'
-    ```
-
-#### Testing and Quality Assurance
-- Run the test suite using:
-  ```bash
-  npm test
-  ```
-- Extend tests by adding files in the `tests` folder.
-- Use ESLint and Prettier (configured via `npm run lint` and `npm run format`) to maintain code quality.
-
-#### Database Management with Prisma
-- **Generate Prisma Client:**
-  ```bash
-  npx prisma generate
-  ```
-- **Run Migrations:**
-  ```bash
-  npx prisma migrate dev
-  ```
-- **Seed the Database:**
-  ```bash
-  npx prisma db seed
-  ```
-- Use Prisma Studio to inspect your data:
-  ```bash
-  npx prisma studio
-  ```
-
-#### Custom Middlewares and Extensions
-- Add new express middlewares under `src/middlewares` to implement additional security, logging, or business logic.
-- Extend the existing routes and controllers by following the established folder structure.
-
-#### Deployment Best Practices
-- For production, build the application using:
-  ```bash
-  npm run build
-  ```
-- Start the production server with:
-  ```bash
-  npm start
-  ```
-- Ensure environment variables in `.env` are properly configured for production.
-
-### Customization and Extension
-Leverage the structure of the template:
-- Add new routes in the `src/routes` folder.
-- Extend the logging functionality in `src/utils/logger.ts` if needed.
-- Create additional controllers and middlewares to suit your business logic.
-
-### 🤝 Contributing
-
-We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more information.
-
-### 📜 License
+## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 🎉 Conclusion
-
-This template is a powerful starting point for any backend developer looking to build a secure and scalable Express application. With TypeScript, Prisma, and a suite of security best practices, you can focus on building features rather than setting up boilerplate code. Happy coding!
+Happy coding!
 
