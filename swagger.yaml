@@ -1,0 +1,224 @@
+openapi: "3.0.0"
+info:
+  title: "Express Template API"
+  version: "1.0.0"
+  description: "API documentation for Express Template API using OpenAPI 3.0"
+servers:
+  - url: "{{base_url}}"
+paths:
+  /api/v1/health:
+    get:
+      summary: "Health Check"
+      responses:
+        '200':
+          description: "Healthy"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /api/v1/auth/register:
+    post:
+      summary: "Register a new user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  description: "Must contain minimum 10 characters with uppercase, lowercase, number, and special character."
+      responses:
+        '201':
+          description: "User created successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  token:
+                    type: string
+        '400':
+          description: "Bad Request"
+  /api/v1/auth/login:
+    post:
+      summary: "User login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: "Login successful"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '401':
+          description: "Unauthorized"
+  /api/v1/auth/profile:
+    get:
+      summary: "Get user profile"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "Profile info"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  role:
+                    type: string
+        '401':
+          description: "Unauthorized"
+  /api/v1/users:
+    get:
+      summary: "Get all users (Admin Only)"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of users"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    email:
+                      type: string
+                    role:
+                      type: string
+        '403':
+          description: "Forbidden"
+  /api/v1/users/{id}:
+    get:
+      summary: "Get user by ID"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: "User ID"
+      responses:
+        '200':
+          description: "User details"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+                  role:
+                    type: string
+        '404':
+          description: "Not Found"
+    put:
+      summary: "Update user (Admin Only)"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: "User ID to update"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  description: "New password must be strong."
+      responses:
+        '200':
+          description: "User updated successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  email:
+                    type: string
+        '400':
+          description: "Invalid request"
+        '403':
+          description: "Forbidden"
+        '404':
+          description: "User not found"
+    delete:
+      summary: "Delete user (Admin Only)"
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: "User ID to delete"
+      responses:
+        '204':
+          description: "User deleted successfully"
+        '403':
+          description: "Forbidden, cannot delete admin"
+        '404':
+          description: "User not found"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
