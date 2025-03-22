@@ -51,12 +51,34 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 			return next(new AuthenticationError('Invalid credentials'));
 		}
 
-		const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
+		const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
 			expiresIn: '1h'
 		});
+    // Generate refresh token with longer expiry (7 days)
+		const refreshToken = jwt.sign({ userId: user.id }, process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!, {
+			expiresIn: '7d'
+		});
 
-		res.json({ token });
+		res.json({ token: accessToken, refreshToken });
 	} catch (error) {
 		next(new AppError('Login failed', 500, 'APP_ERROR', true, error));
 	}
+};
+
+export const refreshTokenHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      return next(new AppError('Refresh token missing', 400));
+    }
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!, (err, payload: any) => {
+      if (err) {
+        return next(new AppError('Invalid refresh token', 403));
+      }
+      const newAccessToken = jwt.sign({ userId: payload.userId }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+      return res.json({ token: newAccessToken });
+    });
+  } catch (error) {
+    next(new AppError('Failed to refresh token', 500, 'APP_ERROR', true, error));
+  }
 };

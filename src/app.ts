@@ -32,12 +32,17 @@ app.use(
     }
   })
 );
+app.use(helmet.hsts({ maxAge: 31536000, includeSubDomains: true }));
+app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
+app.use(helmet.noSniff());
 app.use(
-	cors({
-		origin: process.env.CORS_ORIGIN || '*',    
-		methods: ['GET', 'POST', 'PUT', 'DELETE'],
-		credentials: true
-	})
+  cors({
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+    optionsSuccessStatus: 200,
+    preflightContinue: false
+  })
 );
 app.use(json());
 app.use(mongoSanitize());
