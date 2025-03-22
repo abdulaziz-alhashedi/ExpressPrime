@@ -20,7 +20,18 @@ config();
 const prisma = new PrismaClient();
 const app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'"]
+      }
+    }
+  })
+);
 app.use(
 	cors({
 		origin: process.env.CORS_ORIGIN || '*',    
@@ -61,13 +72,11 @@ app.get('/api/v1/health', (req, res) => {
 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error(err);
-  if (err instanceof AppError) {
-    return res.status(err.statusCode).json({
-      message: err.message,
-      ...(err.details && { details: err.details })
-    });
-  }
-  res.status(500).json({ error: 'Internal Server Error' });
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    message: err.message || 'Internal Server Error',
+    ...(err.details && { details: err.details })
+  });
 });
 
 

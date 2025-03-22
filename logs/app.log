@@ -1,0 +1,4 @@
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:08:40.453Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:09:14.715Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: cd98624a-a825-4e52-b914-068a52db4088","timestamp":"2025-03-22T14:09:24.059Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 17bdc0f5-24cc-40e1-a706-b376972f2d79","timestamp":"2025-03-22T14:09:25.522Z"}
