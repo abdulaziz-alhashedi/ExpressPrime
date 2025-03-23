@@ -23,6 +23,8 @@ Logging and Debugging
 API Documentation and Testing
 • Good: The inclusion of Swagger and Postman collections helps both development and onboarding. The tests cover many endpoints and even some unit tests for services.
 • Bad: The tests tend to repeat registration and login flows, and could be more DRY by extracting common helper functions.
+  - Create a shared test setup file (e.g., d:\express_F_S\Tests\common\testSetup.js) to manage repeated initialization.
+  - Use beforeAll/afterAll hooks to manage resources across tests.
 
 In summary, the project design shows a strong focus on modularity and security best practices. However, slight improvements such as consolidating similar validation logic, fine-tuning PrismaClient usage, and unifying logging across environments would further enhance the maintainability and clarity of the codebase.
 
@@ -71,9 +73,9 @@ Separate logger configurations for development and production by defining enviro
 Remove or replace any direct console outputs (like those in Swagger setup) with appropriate logger calls to maintain consistency.
 ****
 Refactor API Documentation and Testing:
-
+**
 Extract common functions or helper modules for repetitive registration and login flows in the tests.
-
+***
 Ensure that tests are DRY (Don’t Repeat Yourself) by centralizing common test logic and using shared setup/teardown routines.
 
 By following these steps, you can address the current shortcomings while preserving the strong architectural decisions already in place, ensuring the project remains scalable, maintainable, and secure.
