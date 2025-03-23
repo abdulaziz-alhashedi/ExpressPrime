@@ -1,10 +1,8 @@
 import bcrypt from 'bcryptjs';
-import { PrismaClient } from '@prisma/client';
 import readline from 'readline';
 import { isStrongPassword } from '../src/utils/passwordValidator'; 
 import { config as appConfig } from '../src/config/config';
-
-const prisma = new PrismaClient();
+import { prisma } from '../src/utils/prisma';  // updated import
 
 function askQuestion(query: string): Promise<string> {
     const rl = readline.createInterface({
