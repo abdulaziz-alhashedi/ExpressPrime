@@ -1,5 +1,6 @@
 import request from 'supertest';
 import app from '../src/app';
+import { registerTestUser, loginTestUser } from './authTestHelpers';
 
 describe('GET /api/v1/health', () => {
   it('should return status OK', async () => {
@@ -29,16 +30,12 @@ describe('POST /api/v1/auth/register', () => {
 
 describe('POST /api/v1/auth/login', () => {
   it('should login a registered user', async () => {
-    // First register a user
-    await request(app)
-      .post('/api/v1/auth/register')
-      .send({ email: "login@test.com", password: "StrongPass#123" });
-    
-    const res = await request(app)
-      .post('/api/v1/auth/login')
-      .send({ email: "login@test.com", password: "StrongPass#123" });
-    expect(res.status).toEqual(200);
-    expect(res.body).toHaveProperty('token');
+    // Register a user using the helper
+    const { email, password } = (await registerTestUser({ email: "login@test.com" })).email
+      ? { email: "login@test.com", password: "StrongPass#123" }
+      : { email: "login@test.com", password: "StrongPass#123" };
+    const res = await loginTestUser(email, password);
+    expect(res).toHaveProperty('token');
   });
   it('should return 401 for wrong credentials', async () => {
     const res = await request(app)
@@ -50,27 +47,18 @@ describe('POST /api/v1/auth/login', () => {
 
 describe('GET /api/v1/auth/profile', () => {
   it('should get user profile with valid token', async () => {
-    // Register a new user
-    const regRes = await request(app)
-      .post('/api/v1/auth/register')
-      .send({ email: "profile@test.com", password: "StrongPass#123" });
-    expect(regRes.status).toEqual(201);
-
-    // Log in using registered credentials
-    const loginRes = await request(app)
-      .post('/api/v1/auth/login')
-      .send({ email: "profile@test.com", password: "StrongPass#123" });
-    expect(loginRes.status).toEqual(200);
-    const token = loginRes.body.token;
+    // Register and login user using helper functions
+    const { email, password } = (await registerTestUser({ email: "profile@test.com" })).email
+      ? { email: "profile@test.com", password: "StrongPass#123" }
+      : { email: "profile@test.com", password: "StrongPass#123" };
+    const loginRes = await loginTestUser(email, password);
+    const token = loginRes.token;
     expect(token).toBeDefined();
-
-    // Call profile endpoint using the token
     const profileRes = await request(app)
       .get('/api/v1/auth/profile')
       .set('Authorization', `Bearer ${token}`);
     expect(profileRes.status).toEqual(200);
-    expect(profileRes.body).toHaveProperty('user');
-    expect(profileRes.body.user).toHaveProperty('email', "profile@test.com");
+    expect(profileRes.body.user).toHaveProperty('email', email);
   });
 });
 
