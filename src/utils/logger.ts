@@ -1,7 +1,8 @@
 import winston from 'winston';
 import path from 'path';
+import { config } from '../config/config';
 
-const level = process.env.NODE_ENV === 'production' ? 'info' : 'debug';
+const level = config.NODE_ENV === 'production' ? 'info' : 'debug';
 const logPath = path.join(__dirname, '../../logs/app.log');
 
 const logger = winston.createLogger({
