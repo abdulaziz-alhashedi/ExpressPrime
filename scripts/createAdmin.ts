@@ -2,7 +2,8 @@ import bcrypt from 'bcryptjs';
 import readline from 'readline';
 import { isStrongPassword } from '../src/utils/passwordValidator'; 
 import { config as appConfig } from '../src/config/config';
-import { prisma } from '../src/utils/prisma';  // updated import
+import { prisma } from '../src/utils/prisma';
+import logger from '../src/utils/logger'; // added logger import
 
 function askQuestion(query: string): Promise<string> {
     const rl = readline.createInterface({
@@ -37,12 +38,12 @@ async function createAdmin() {
                 role: 'ADMIN'
             }
         });
-        console.log('Admin user created:', admin);
+        logger.info('Admin user created:', admin); // replaced console.log
     } catch (error) {
         if (error instanceof Error) {
-            console.error('Error creating admin:', error.message);
+            logger.error('Error creating admin:', error.message); // replaced console.error
         } else {
-            console.error('Error creating admin:', error);
+            logger.error('Error creating admin:', error); // replaced console.error
         }
     } finally {
         await prisma.$disconnect();

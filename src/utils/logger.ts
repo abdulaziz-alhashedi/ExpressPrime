@@ -3,17 +3,18 @@ import path from 'path';
 import { config } from '../config/config';
 
 const logPath = path.join(__dirname, '../../logs/app.log');
-
 const productionTransports = [
-    new winston.transports.File({
-        filename: logPath,
-        level: 'info',
-        format: winston.format.json(),
-    }),
-    new winston.transports.Console({
-        level: 'error',
-        format: winston.format.simple(),
-    }),
+  new winston.transports.File({
+    filename: logPath,
+    level: 'info',
+    handleExceptions: true,
+    format: winston.format.json(),
+  }),
+  new winston.transports.Console({
+    level: 'error',
+    handleExceptions: true,
+    format: winston.format.simple(),
+  }),
 ];
 
 const developmentTransports = [
