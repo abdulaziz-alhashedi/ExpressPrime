@@ -84,9 +84,11 @@ export class ExpressFramework {
   }
 
   // You can add methods to register middlewares, services, etc.
-  public start() {
-    this.app.listen(this.port, () => {
+  // Modify start() to return the HTTP server instance
+  public start(): import("http").Server {
+    const server = this.app.listen(this.port, () => {
       logger.info(`Framework server running on port ${this.port}`);
     });
+    return server;
   }
 }

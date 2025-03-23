@@ -75,7 +75,9 @@ const limiter = rateLimit({
 framework.app.use(limiter);
 
 framework.registerModule('/api/v1/auth', authRoutes);
-framework.registerModule('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerRouter = express.Router();
+swaggerRouter.use(swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+framework.registerModule('/api/v1/docs', swaggerRouter);
 framework.registerModule('/api/v1/external', externalRoutes);
 framework.registerModule('/api/v1/users', userRoutes);
 framework.app.get('/api/v1/health', (req, res) => {
@@ -86,10 +88,9 @@ framework.app.use(errorHandler);
 
 if (require.main === module) {
   prisma.$connect().then(() => {
-    framework.start();
-
+    const server = framework.start();
     const shutdown = () => {
-      framework.app.close?.(() => {
+      server.close(() => {
         prisma.$disconnect().then(() => process.exit(0));
       });
     };
