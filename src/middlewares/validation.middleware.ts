@@ -1,22 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
+import { isStrongPassword } from '../utils/passwordValidator';
 
 export const validate = (method: string) => {
   switch (method) {
     case 'register': {
       return [
         body('email').isEmail().withMessage('Email must be valid'),
-        body('password')
-          .isLength({ min: 10 })
-          .withMessage('Password must be at least 10 characters long'),
+        body('password').custom(value => {
+          if (!isStrongPassword(value)) {
+            throw new Error('Password must be at least 10 characters long and include uppercase, lowercase, digit, and special character');
+          }
+          return true;
+        })
       ];
     }
     case 'login': {
       return [
         body('email').isEmail().withMessage('Email must be valid'),
-        body('password')
-          .isLength({ min: 10 })
-          .withMessage('Password must be at least 10 characters long'),
+        // For login, just non-empty check
+        body('password').notEmpty().withMessage('Password is required')
       ];
     }
     default: {
