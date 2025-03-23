@@ -5,17 +5,17 @@ import { PrismaClient } from '@prisma/client';
 import { json } from 'body-parser';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
-import authRoutes from './routes/auth.routes';
-import logger from './utils/logger';
+import authRoutes from '@/routes/auth.routes';
+import logger from '@/utils/logger';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import { v4 as uuidv4 } from 'uuid';
-import externalRoutes from './routes/external.routes';  
-import userRoutes from './routes/user.routes';
+import externalRoutes from '@/routes/external.routes';  
+import userRoutes from '@/routes/user.routes';
 import { errorHandler } from './middlewares/errorHandler';
 
 // Use centralized configuration instead of dotenv directly
-import { config as appConfig } from './config/config';
+import { config as appConfig } from '@/config/config';
 
 const prisma = new PrismaClient();
 const app = express();

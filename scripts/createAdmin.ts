@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
 import readline from 'readline';
-import { isStrongPassword } from '../src/utils/passwordValidator'; // added import
+import { isStrongPassword } from '../src/utils/passwordValidator'; 
 import { config as appConfig } from '../src/config/config';
 
 const prisma = new PrismaClient();
