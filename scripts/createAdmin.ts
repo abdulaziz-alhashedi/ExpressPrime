@@ -3,7 +3,7 @@ import readline from 'readline';
 import { isStrongPassword } from '../src/utils/passwordValidator'; 
 import { config as appConfig } from '../src/config/config';
 import { prisma } from '../src/utils/prisma';
-import logger from '../src/utils/logger'; // added logger import
+import logger from '../src/utils/logger'; 
 
 function askQuestion(query: string): Promise<string> {
     const rl = readline.createInterface({
@@ -38,12 +38,12 @@ async function createAdmin() {
                 role: 'ADMIN'
             }
         });
-        logger.info('Admin user created:', admin); // replaced console.log
+        logger.info('Admin user created:', admin); 
     } catch (error) {
         if (error instanceof Error) {
-            logger.error('Error creating admin:', error.message); // replaced console.error
+            logger.error('Error creating admin:', error.message);
         } else {
-            logger.error('Error creating admin:', error); // replaced console.error
+            logger.error('Error creating admin:', error); 
         }
     } finally {
         await prisma.$disconnect();
