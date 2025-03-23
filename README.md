@@ -146,14 +146,16 @@ A robust Express-based API template featuring secure authentication, role-based 
 
 ## Architecture Overview
 
-This project is built with scalability and maintainability in mind. Its key design decisions are:
-- A clear separation between configuration (in the config folder), utilities (logging, error handling), and business logic (controllers, services).
-- Dedicated middlewares for authentication, validation, rate limiting and error handling.
-- ORM (Prisma) integration with a well-structured schema to manage data persistence.
-- Script-based tools for tasks like API generation and admin creation.
-- Extensive testing and documentation resources (tests, docs, Postman collections).
+This project is designed for scalability and maintainability. Key design decisions and recent improvements include:
+- Modular structure with clear separation of controllers, services, middlewares, routes, and utilities.
+- Unified password validation using a dedicated utility so that both request validators and service logic enforce a minimum of 10 characters with mixed case, digit, and special character.
+- A singleton PrismaClient to prevent duplicate connections and improve graceful shutdown across environments.
+- Environment-specific logging configuration: development uses verbose console and file logging with colorization, while production logs are structured and less verbose.
+- Robust configuration using envalid to consolidate .env files.
+- Enhanced testing and API scaffolding with shared helper functions to promote DRY principles.
+- Comprehensive documentation linking the core modules, usage instructions, and extension guidelines.
 
-By keeping these layers separate, the project remains both secure and extendable.
+For more details, please see the [Module Documentation](./Docs/ModuleDocumentation.md) and [Usage Documentation](./Docs/USAGE.md).
 
 ## 🤝 Contributing
 

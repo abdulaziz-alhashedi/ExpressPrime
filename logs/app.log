@@ -79,3 +79,12 @@
 {"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:35:15.747Z"}
 {"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:35:26.169Z"}
 {"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:47:53.971Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:48:03.775Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 62b0d00e-6e2f-48da-b4b8-324a0b9e61f9","timestamp":"2025-03-23T13:48:07.305Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: da5bc552-d8c0-44d5-9c4e-35defbe9a508","timestamp":"2025-03-23T13:48:07.311Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 80f19dd0-2d10-42df-a978-b3f114d7ead7","timestamp":"2025-03-23T13:48:29.341Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: f6125f00-a52f-4bb5-a068-f4b1e79fa354","timestamp":"2025-03-23T13:48:29.417Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: 6b5ba2cf-1b94-465a-96ad-c27b1c697a81","timestamp":"2025-03-23T13:48:29.428Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 4ccad50a-e2e6-4649-b618-ff7bf77f74aa","timestamp":"2025-03-23T13:48:29.440Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: d3286e1c-d23c-4f34-bf22-dd12784f9b9e","timestamp":"2025-03-23T13:48:29.443Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: e0ca6a30-7a60-42ab-b2ae-4ea417b1e289","timestamp":"2025-03-23T13:48:29.847Z"}
