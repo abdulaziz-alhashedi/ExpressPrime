@@ -1,9 +1,8 @@
-import { config } from 'dotenv';
-config();
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
 import readline from 'readline';
 import { isStrongPassword } from '../src/utils/passwordValidator'; // added import
+import { config as appConfig } from '../src/config/config';
 
 const prisma = new PrismaClient();
 
@@ -31,7 +30,7 @@ async function createAdmin() {
             throw new Error('Provided password is weak. Please provide a stronger password with minimum 10 characters, including uppercase, lowercase, numeric digit, and special character.');
         }
 
-        const saltRounds = 12;
+        const saltRounds = appConfig.BCRYPT_SALT_ROUNDS;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         const admin = await prisma.user.create({
             data: {
