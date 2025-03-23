@@ -6,6 +6,21 @@
  * that are used across the application.
  */
 
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+
+// Load environment variables from an environment-specific file if it exists.
+const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
+const envPath = path.resolve(process.cwd(), envFile);
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath, override: true });
+  console.log(`Loaded environment variables from ${envFile}`);
+} else {
+  dotenv.config({ override: true });
+  console.log('Loaded default .env file');
+}
+
 import { cleanEnv, str, port, num } from 'envalid';
 
 export const config = cleanEnv(process.env, {
