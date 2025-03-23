@@ -1,29 +1,39 @@
-# 🚀 Express Template with TypeScript, Prisma, and Security Best Practices
+# Express Template API
 
-Welcome to the Express Template! This project is designed to help backend developers quickly set up a secure and scalable Express application using TypeScript, Prisma, and modern security practices.
+A robust Express-based API template featuring secure authentication, role-based access control, input validation, and automated API module generation.
 
-## ✨ Features
+## Features
 
-- **TypeScript Support**: Strongly typed code for improved quality.
-- **Prisma ORM**: Simplifies database access, migrations, and modeling.
-- **Enhanced Security**:
-  - Strong password policies with regex validation and bcrypt hashing.
-  - Role-based access control: Admin-only endpoints and controlled user creation.
-  - Security middlewares: Helmet, rate limiting, and input sanitization.
-- **API Documentation**: OpenAPI 3.0 (Swagger) documentation is available.
-- **Postman Integration**: A complete Postman collection with dynamic URL configuration.
-- **Utility Scripts**:
-  - API Generator: Quickly scaffold new endpoints (routes, controllers, models).
-  - Admin Creation Script: Create an admin account securely via the CLI.
-- **Robust Logging & Error Handling**: All errors are logged with Winston and custom error classes manage response codes.
-- **Testing**: Jest and Supertest are preconfigured for unit and integration tests.
+- JWT-based authentication with refresh tokens.
+- Role-based authorization (with ADMIN and USER roles).
+- Input validation using express-validator.
+- Rate limiting and security middlewares (Helmet, CORS, mongoSanitize).
+- API scaffolding via a custom generation script.
+- Comprehensive logging with winston.
+- Database access managed by Prisma.
+- Environment variable management via envalid.
+- Detailed API documentation (Swagger and Postman collections).
 
-## ✨ Updated Architecture
+## Project Structure
 
-- **Service Layer**: Business logic is now separated into the `/src/services` directory for better modularity and easier testing.
-- **CLI Tools**: New scripts in `/scripts` (e.g., `generateApi.ts` and `createAdmin.ts`) to scaffold APIs and securely create admin users.
-- **Enhanced Security & Error Handling**: Custom error classes, rate limiters, and security middlewares ensure robust and secure operations.
-- **Improved Logging**: Centralized logging using Winston for both console and file outputs.
+// ...existing directory tree as documented in ModuleDocumentation.md...
+
+## Setup Instructions
+
+1. Copy `.env.example` to `.env` and update the configuration values.
+2. Run `npm install` to install dependencies.
+3. Run Prisma migrations with `npx prisma migrate dev`.
+4. (Optional) Seed the database with `npx ts-node prisma/seed.ts`.
+5. Start the application with `npm run start`.
+
+## Development
+
+- Use `npm run dev` for development with hot-reloading.
+- Use the generate API script (`npx ts-node scripts/generateApi.ts`) to scaffold new API modules.
+
+## Testing
+
+- Run tests with `npm test`.
 
 ## 🛠️ Getting Started
 
@@ -114,13 +124,6 @@ Welcome to the Express Template! This project is designed to help backend develo
 - Users registering via `/api/v1/auth/register` are forced to have the role `USER`.
 - Only admin users can create, update, or delete other users via `/api/v1/users`.
 - A dedicated middleware (`authenticateJWT`) and role checks ensure only authorized access to admin endpoints.
-
-## 🧪 Running Tests
-
-Execute the test suite with:
-```bash
-npm test
-```
 
 ## 📂 Project Structure
 
