@@ -1,4 +1,4 @@
-import { cleanEnv, str, port } from 'envalid';
+import { cleanEnv, str, port, num } from 'envalid';
 
 export const config = cleanEnv(process.env, {
   DATABASE_URL: str(),
@@ -9,4 +9,5 @@ export const config = cleanEnv(process.env, {
   CORS_ORIGIN: str({ default: '*' }),
   API_KEY: str(),
   ADMIN_KEY: str(),
+  BCRYPT_SALT_ROUNDS: num({ default: 12 }),
 });

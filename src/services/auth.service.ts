@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../utils/prisma';
 import { AppError, AuthenticationError } from '../types/errors';
 import { Role } from '@prisma/client';
+import { config } from '../config/config';
 
-const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 12;
+const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
 function isStrongPassword(password: string): boolean {
   return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/.test(password);
@@ -22,10 +23,10 @@ export const registerUser = async (email: string, password: string) => {
   const user = await prisma.user.create({
     data: { email, password: hashedPassword, role: 'USER' as Role },
   });
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user.id }, config.JWT_SECRET, { expiresIn: '1h' });
   const refreshToken = jwt.sign(
     { userId: user.id },
-    process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!,
+    config.REFRESH_TOKEN_SECRET,
     { expiresIn: '7d' }
   );
   return { user, token, refreshToken };
@@ -36,10 +37,10 @@ export const loginUser = async (email: string, password: string) => {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new AuthenticationError('Invalid credentials');
   }
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user.id }, config.JWT_SECRET, { expiresIn: '1h' });
   const refreshToken = jwt.sign(
     { userId: user.id },
-    process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!,
+    config.REFRESH_TOKEN_SECRET,
     { expiresIn: '7d' }
   );
   return { user, token, refreshToken };
@@ -49,12 +50,12 @@ export const refreshAccessToken = (refreshToken: string) => {
   return new Promise((resolve, reject) => {
     jwt.verify(
       refreshToken,
-      process.env.REFRESH_TOKEN_SECRET || process.env.JWT_SECRET!,
+      config.REFRESH_TOKEN_SECRET,
       (err, payload: any) => {
         if (err) {
           return reject(new AppError('Invalid refresh token', 403));
         }
-        const newAccessToken = jwt.sign({ userId: payload.userId }, process.env.JWT_SECRET!, {
+        const newAccessToken = jwt.sign({ userId: payload.userId }, config.JWT_SECRET, {
           expiresIn: '1h',
         });
         resolve({ token: newAccessToken });

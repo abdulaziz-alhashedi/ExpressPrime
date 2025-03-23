@@ -37,7 +37,7 @@ app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
 app.use(helmet.noSniff());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*',
+    origin: appConfig.CORS_ORIGIN.split(','),
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200,
@@ -79,7 +79,7 @@ app.get('/api/v1/health', (req, res) => {
 app.use(errorHandler);
 
 if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
+  const PORT = appConfig.PORT;
   prisma.$connect().then(() => {
     const server = app.listen(PORT, () => {
       logger.info(`Server running on port ${PORT}`);

@@ -2,8 +2,9 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '../utils/prisma';
 import { AppError } from '../types/errors';
 import logger from '../utils/logger';
+import { config } from '../config/config';
 
-const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 12;
+const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
 function isStrongPassword(password: string): boolean {
   return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/.test(password);
