@@ -3,12 +3,9 @@ import { prisma } from '../utils/prisma';
 import { AppError } from '../types/errors';
 import logger from '../utils/logger';
 import { config } from '../config/config';
+import { isStrongPassword } from '../utils/passwordValidator';
 
 const saltRounds = config.BCRYPT_SALT_ROUNDS;
-
-function isStrongPassword(password: string): boolean {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/.test(password);
-}
 
 export const getAllUsers = async () => {
   return await prisma.user.findMany();

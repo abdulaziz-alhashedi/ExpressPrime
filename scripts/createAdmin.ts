@@ -3,6 +3,7 @@ config();
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client';
 import readline from 'readline';
+import { isStrongPassword } from '../src/utils/passwordValidator'; // added import
 
 const prisma = new PrismaClient();
 
@@ -18,10 +19,6 @@ function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function isStrongPassword(password: string): boolean {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password);
-}
-
 async function createAdmin() {
     try {
         const email = await askQuestion('Enter admin email: ');
@@ -31,7 +28,7 @@ async function createAdmin() {
 
         const password = await askQuestion('Enter admin password: ');
         if (!isStrongPassword(password)) {
-            throw new Error('Provided password is weak. Please provide a stronger password with minimum 8 characters, including uppercase, lowercase, numeric digit, and special character.');
+            throw new Error('Provided password is weak. Please provide a stronger password with minimum 10 characters, including uppercase, lowercase, numeric digit, and special character.');
         }
 
         const saltRounds = 12;

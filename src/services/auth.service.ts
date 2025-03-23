@@ -4,12 +4,11 @@ import { prisma } from '../utils/prisma';
 import { AppError, AuthenticationError } from '../types/errors';
 import { Role } from '@prisma/client';
 import { config } from '../config/config';
+import { isStrongPassword } from '../utils/passwordValidator';
 
 const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
-function isStrongPassword(password: string): boolean {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/.test(password);
-}
+// Removed duplicate isStrongPassword definition
 
 export const registerUser = async (email: string, password: string) => {
   if (!isStrongPassword(password)) {
