@@ -1,3 +1,13 @@
+/**
+ * Main Application Entry Point
+ *
+ * This module sets up the Express server including:
+ * - Security middlewares (Helmet, CORS, rate limiting, input sanitization)
+ * - Logging of incoming requests (with trace IDs)
+ * - Route registrations (auth, user, external, docs)
+ * - Error handling and graceful shutdown logic.
+ */
+
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -14,7 +24,6 @@ import externalRoutes from '@/routes/external.routes';
 import userRoutes from '@/routes/user.routes';
 import { errorHandler } from './middlewares/errorHandler';
 
-// Use centralized configuration instead of dotenv directly
 import { config as appConfig } from '@/config/config';
 
 const prisma = new PrismaClient();
@@ -75,7 +84,6 @@ app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'OK', uptime: process.uptime() });
 });
 
-// Use the new error handler middleware
 app.use(errorHandler);
 
 if (require.main === module) {

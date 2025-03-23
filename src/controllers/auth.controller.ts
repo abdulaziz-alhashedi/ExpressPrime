@@ -1,3 +1,14 @@
+/**
+ * Authentication Controller
+ *
+ * This module contains controller functions for handling:
+ * - User registration (creating new users with strong password validation)
+ * - User login (verifying credentials and issuing JWT and refresh tokens)
+ * - Access token refresh
+ *
+ * It acts as a bridge between HTTP requests and authentication business logic.
+ */
+
 import { Request, Response, NextFunction } from 'express';
 import { registerUser, loginUser, refreshAccessToken } from '../services/auth.service';
 import { AppError } from '../types/errors';

@@ -1,3 +1,11 @@
+/**
+ * Application Configuration Module
+ *
+ * This module uses envalid to validate and clean the runtime environment variables.
+ * It provides strongly-typed configuration options (e.g., PORT, DATABASE_URL, JWT secrets)
+ * that are used across the application.
+ */
+
 import { cleanEnv, str, port, num } from 'envalid';
 
 export const config = cleanEnv(process.env, {
