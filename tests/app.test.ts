@@ -92,9 +92,10 @@ describe('GET /api/v1/nonexistent', () => {
 
 describe('Unit tests for auth.service', () => {
   const { registerUser } = require('../src/services/auth.service');
+  const { PASSWORD_REQUIREMENT_MESSAGE } = require('../src/utils/passwordValidator'); // <-- added import
 
   it('should throw an error when registering with a weak password', async () => {
-    await expect(registerUser('unit@example.com', 'weakpass')).rejects.toThrow(/weak/);
+    await expect(registerUser('unit@example.com', 'weakpass')).rejects.toThrow(PASSWORD_REQUIREMENT_MESSAGE); // <-- updated check
   });
 });
 
