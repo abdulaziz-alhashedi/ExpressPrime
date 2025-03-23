@@ -77,5 +77,5 @@ Refactor API Documentation and Testing:
 Extract common functions or helper modules for repetitive registration and login flows in the tests.
 ***
 Ensure that tests are DRY (Don’t Repeat Yourself) by centralizing common test logic and using shared setup/teardown routines.
-
+****
 By following these steps, you can address the current shortcomings while preserving the strong architectural decisions already in place, ensuring the project remains scalable, maintainable, and secure.

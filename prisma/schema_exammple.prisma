@@ -1,3 +1,5 @@
+// Note: This is an example schema. Consider renaming this file to "schema_example.prisma" for clarity.
+
 generator client {
   provider = "prisma-client-js"
 }

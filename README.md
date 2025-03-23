@@ -141,6 +141,17 @@ npm test
 - **tests**: Contains automated tests for API endpoints.
 - **CHANGELOG.md**: Summarizes recent changes.
 
+## Architecture Overview
+
+This project is built with scalability and maintainability in mind. Its key design decisions are:
+- A clear separation between configuration (in the config folder), utilities (logging, error handling), and business logic (controllers, services).
+- Dedicated middlewares for authentication, validation, rate limiting and error handling.
+- ORM (Prisma) integration with a well-structured schema to manage data persistence.
+- Script-based tools for tasks like API generation and admin creation.
+- Extensive testing and documentation resources (tests, docs, Postman collections).
+
+By keeping these layers separate, the project remains both secure and extendable.
+
 ## 🤝 Contributing
 
 We welcome contributions! Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
