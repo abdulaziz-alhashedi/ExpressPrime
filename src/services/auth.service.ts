@@ -4,7 +4,7 @@ import { prisma } from '../utils/prisma';
 import { AppError, AuthenticationError } from '../types/errors';
 import { Role } from '@prisma/client';
 import { config } from '../config/config';
-import { isStrongPassword } from '../utils/passwordValidator';
+import { isStrongPassword, PASSWORD_REQUIREMENT_MESSAGE } from '../utils/passwordValidator';
 
 const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
@@ -12,7 +12,7 @@ const saltRounds = config.BCRYPT_SALT_ROUNDS;
 
 export const registerUser = async (email: string, password: string) => {
   if (!isStrongPassword(password)) {
-    throw new AppError('Provided password is weak. Please provide a stronger password.', 400);
+    throw new AppError(PASSWORD_REQUIREMENT_MESSAGE, 400);
   }
   const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser) {

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
-import { isStrongPassword } from '../utils/passwordValidator';
+import { isStrongPassword, PASSWORD_REQUIREMENT_MESSAGE } from '../utils/passwordValidator';
 
 export const validate = (method: string) => {
   switch (method) {
@@ -9,7 +9,7 @@ export const validate = (method: string) => {
         body('email').isEmail().withMessage('Email must be valid'),
         body('password').custom(value => {
           if (!isStrongPassword(value)) {
-            throw new Error('Password must be at least 10 characters long and include uppercase, lowercase, digit, and special character');
+            throw new Error(PASSWORD_REQUIREMENT_MESSAGE);
           }
           return true;
         })
@@ -18,7 +18,6 @@ export const validate = (method: string) => {
     case 'login': {
       return [
         body('email').isEmail().withMessage('Email must be valid'),
-        // For login, just non-empty check
         body('password').notEmpty().withMessage('Password is required')
       ];
     }

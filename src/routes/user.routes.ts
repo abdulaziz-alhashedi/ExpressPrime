@@ -22,9 +22,9 @@ router.post(
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').custom(value => {
-      const { isStrongPassword } = require('../utils/passwordValidator');
+      const { isStrongPassword, PASSWORD_REQUIREMENT_MESSAGE } = require('../utils/passwordValidator');
       if (!isStrongPassword(value)) {
-        throw new Error('Password must be at least 10 characters long and include uppercase, lowercase, digit, and special character');
+        throw new Error(PASSWORD_REQUIREMENT_MESSAGE);
       }
       return true;
     })
@@ -39,9 +39,9 @@ router.put(
     param('id').isInt().withMessage('ID must be an integer'),
     body('email').optional().isEmail().withMessage('Invalid email format'),
     body('password').optional().custom(value => {
-      const { isStrongPassword } = require('../utils/passwordValidator');
+      const { isStrongPassword, PASSWORD_REQUIREMENT_MESSAGE } = require('../utils/passwordValidator');
       if (!isStrongPassword(value)) {
-        throw new Error('Password must be at least 10 characters long and include uppercase, lowercase, digit, and special character');
+        throw new Error(PASSWORD_REQUIREMENT_MESSAGE);
       }
       return true;
     })
