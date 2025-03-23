@@ -11,7 +11,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/utils/prisma';
 import { json } from 'body-parser';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -26,7 +26,6 @@ import { errorHandler } from './middlewares/errorHandler';
 
 import { config as appConfig } from '@/config/config';
 
-const prisma = new PrismaClient();
 const app = express();
 
 app.use(
