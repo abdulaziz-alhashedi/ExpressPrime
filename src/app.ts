@@ -25,10 +25,11 @@ import userRoutes from '@/routes/user.routes';
 import { errorHandler } from './middlewares/errorHandler';
 
 import { config as appConfig } from '@/config/config';
+import { ExpressFramework } from './framework/ExpressFramework';
 
-const app = express();
+const framework = new ExpressFramework(appConfig.PORT);
 
-app.use(
+framework.app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
@@ -40,10 +41,10 @@ app.use(
     }
   })
 );
-app.use(helmet.hsts({ maxAge: 31536000, includeSubDomains: true }));
-app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
-app.use(helmet.noSniff());
-app.use(
+framework.app.use(helmet.hsts({ maxAge: 31536000, includeSubDomains: true }));
+framework.app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
+framework.app.use(helmet.noSniff());
+framework.app.use(
   cors({
     origin: appConfig.CORS_ORIGIN.split(','),
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -52,17 +53,17 @@ app.use(
     preflightContinue: false
   })
 );
-app.use(json());
-app.use(mongoSanitize());
+framework.app.use(json());
+framework.app.use(mongoSanitize());
 
-app.use((req, res, next) => {
+framework.app.use((req, res, next) => {
   const traceId = uuidv4();
   req.headers['x-trace-id'] = traceId;
   res.setHeader('X-Trace-Id', traceId);
   next();
 });
 
-app.use((req, res, next) => {
+framework.app.use((req, res, next) => {
   logger.info(`${req.method} ${req.url} - TraceID: ${req.headers['x-trace-id']}`);
   next();
 });
@@ -71,29 +72,25 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
 });
-app.use(limiter);
+framework.app.use(limiter);
 
-app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1/external', externalRoutes);
-app.use('/api/v1/users', userRoutes);
-app.get('/api/v1/health', (req, res) => {
+framework.registerModule('/api/v1/auth', authRoutes);
+framework.registerModule('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+framework.registerModule('/api/v1/external', externalRoutes);
+framework.registerModule('/api/v1/users', userRoutes);
+framework.app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'OK', uptime: process.uptime() });
 });
 
-app.use(errorHandler);
+framework.app.use(errorHandler);
 
 if (require.main === module) {
-  const PORT = appConfig.PORT;
   prisma.$connect().then(() => {
-    const server = app.listen(PORT, () => {
-      logger.info(`Server running on port ${PORT}`);
-    });
+    framework.start();
 
     const shutdown = () => {
-      server.close(async () => {
-        await prisma.$disconnect();
-        process.exit(0);
+      framework.app.close?.(() => {
+        prisma.$disconnect().then(() => process.exit(0));
       });
     };
 
@@ -102,4 +99,4 @@ if (require.main === module) {
   });
 }
 
-export default app;
+export default framework.app;
