@@ -39,6 +39,9 @@ export class AppError extends Error {
   }
 }
 
+// Usage tip: In your controllers/catch blocks, use "catch (error: unknown)" and check error type
+// before accessing properties. This helps prevent unexpected runtime errors.
+
 export class ValidationError extends AppError {
   constructor(message: string, field?: string, info?: Record<string, any>) {
     super(message, 400, 'VALIDATION_ERROR', true, { code: 'VALIDATION_ERROR', field, info });

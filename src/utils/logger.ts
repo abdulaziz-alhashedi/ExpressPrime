@@ -3,6 +3,7 @@ import path from 'path';
 import { config } from '../config/config';
 
 const logPath = path.join(__dirname, '../../logs/app.log');
+// Note: In production, review log content for sensitive data before logging full error objects.
 const productionTransports = [
   new winston.transports.File({
     filename: logPath,
