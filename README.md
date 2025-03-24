@@ -154,6 +154,14 @@ This project is designed for scalability and maintainability. Key design decisio
 - Robust configuration using envalid to consolidate .env files.
 - Enhanced testing and API scaffolding with shared helper functions to promote DRY principles.
 - Comprehensive documentation linking the core modules, usage instructions, and extension guidelines.
+- Deep Dive: For an in-depth analysis of our architecture, scalability, modularity, and security enhancements, please refer to the following documents:
+  - [Module Documentation](./Docs/ModuleDocumentation.md)
+  - [Database Schema](./Docs/database-schema.md)
+  - [Error Codes](./Docs/error-codes.md)
+  - [Authentication](./Docs/authentication.md)
+  - [API Reference](./Docs/api-reference.md)
+  - [Getting Started](./Docs/getting-started.md)
+  - [Introduction](./Docs/introduction.md)
 
 For more details, please see the [Module Documentation](./Docs/ModuleDocumentation.md) and [Usage Documentation](./Docs/USAGE.md).
 
