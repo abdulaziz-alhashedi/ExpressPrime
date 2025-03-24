@@ -11,6 +11,7 @@
     "test": "jest",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:generate": "npx prisma generate",
+    "prisma:migrate:create-only": "npx prisma migrate dev --create-only",
     "prisma:studio": "npx prisma studio",
     "prisma:seed": "npx prisma db seed",
     "lint": "eslint . --ext .ts --fix",
