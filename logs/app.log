@@ -88,3 +88,42 @@
 {"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 4ccad50a-e2e6-4649-b618-ff7bf77f74aa","timestamp":"2025-03-23T13:48:29.440Z"}
 {"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: d3286e1c-d23c-4f34-bf22-dd12784f9b9e","timestamp":"2025-03-23T13:48:29.443Z"}
 {"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: e0ca6a30-7a60-42ab-b2ae-4ea417b1e289","timestamp":"2025-03-23T13:48:29.847Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:59:24.813Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:59:35.847Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T14:00:33.632Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T08:59:08.619Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: c6844774-5b9c-410b-81ac-e87ded2156a6","timestamp":"2025-03-24T09:02:07.449Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 6d6d9c41-3b0c-4415-8000-201c8103acdd","timestamp":"2025-03-24T09:02:07.454Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:56:39.464Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:57:43.892Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:58:39.887Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:59:47.419Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T10:08:14.471Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T10:08:46.916Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:16:59.677Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: a3c266b7-b6dc-4b82-827d-bb32a11c5d6a","timestamp":"2025-03-25T10:19:24.713Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: cc3aba25-b183-4161-b41b-4f2820a292a7","timestamp":"2025-03-25T10:19:24.719Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:20:04.384Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:30:27.132Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:31:08.698Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:31:37.277Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 1ffc470a-cb85-45aa-90ee-3dd012e2633c","timestamp":"2025-03-25T10:33:07.400Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: ab0c0852-d85d-4113-9f6d-876b54f1445f","timestamp":"2025-03-25T10:33:07.564Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: 0e58a6a3-34f0-410f-b334-bff3868b28ff","timestamp":"2025-03-25T10:33:07.569Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 9e47e8c3-9298-4464-aee2-0ccc6396e850","timestamp":"2025-03-25T10:33:07.580Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: bfedc785-8325-46ee-b571-d6c323534f1d","timestamp":"2025-03-25T10:33:07.583Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 7575cef5-c77a-41cc-9383-fb3e3153dbb3","timestamp":"2025-03-25T10:33:14.389Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: 03f74370-1b9c-4280-9323-7c3f721102a6","timestamp":"2025-03-25T10:33:14.431Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: c75b5ec0-6fd3-4c52-8bf0-724d5549427a","timestamp":"2025-03-25T10:33:14.433Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 52327395-2bad-432e-ad32-83a37f4b1a2c","timestamp":"2025-03-25T10:33:14.440Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: ab20b46a-8863-4e97-bd36-eece8a537311","timestamp":"2025-03-25T10:33:14.447Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: 3c57047c-080f-433f-8529-963d31e84a86","timestamp":"2025-03-25T10:33:14.579Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:35:57.237Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:37:31.613Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: cd0be8d0-96bc-4e02-929d-b2456a7191b4","timestamp":"2025-03-25T10:38:39.865Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: 6764ddac-fa6a-4052-8fbd-61fe680b7bca","timestamp":"2025-03-25T10:38:39.917Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: fa5fc613-d71c-45ff-8167-60af7a679b91","timestamp":"2025-03-25T10:38:39.922Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 80736634-4757-42cf-b4eb-9e7b00a9c383","timestamp":"2025-03-25T10:38:39.931Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: 75adce75-f1a4-40ea-bfd5-8502b3199bb3","timestamp":"2025-03-25T10:38:39.934Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: 625d352d-a74d-49c2-bae3-6bfb1705b09c","timestamp":"2025-03-25T10:38:40.039Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:49:33.906Z"}

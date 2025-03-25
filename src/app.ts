@@ -80,6 +80,7 @@ swaggerRouter.use(swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 framework.registerModule('/api/v1/docs', swaggerRouter);
 framework.registerModule('/api/v1/external', externalRoutes);
 framework.registerModule('/api/v1/users', userRoutes);
+
 framework.app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'OK', uptime: process.uptime() });
 });
