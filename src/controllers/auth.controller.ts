@@ -1,34 +1,47 @@
-import { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import { prisma } from '../utils/prisma';
+/**
+ * Authentication Controller
+ *
+ * This module contains controller functions for handling:
+ * - User registration (creating new users with strong password validation)
+ * - User login (verifying credentials and issuing JWT and refresh tokens)
+ * - Access token refresh
+ *
+ * It acts as a bridge between HTTP requests and authentication business logic.
+ */
 
-export const register = async (req: Request, res: Response) => {
+import { Request, Response, NextFunction } from 'express';
+import { registerUser, loginUser, refreshAccessToken } from '../services/auth.service';
+import { AppError } from '../types/errors';
+
+export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    
-    const user = await prisma.user.create({
-      data: { email, password: hashedPassword }
-    });
-
-    res.status(201).json({ id: user.id, email: user.email });
+    const { user, token, refreshToken } = await registerUser(email, password);
+    res.status(201).json({ id: user.id, email: user.email, token, refreshToken });
   } catch (error) {
-    res.status(500).json({ error: 'Registration failed' });
+    next(error);
   }
 };
 
-export const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body;
-  
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    return res.status(401).json({ error: 'Invalid credentials' });
+export const login = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email, password } = req.body;
+    const { token, refreshToken } = await loginUser(email, password);
+    res.json({ token, refreshToken });
+  } catch (error) {
+    next(error);
   }
+};
 
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, {
-    expiresIn: '1h'
-  });
-
-  res.json({ token });
+export const refreshTokenHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) {
+      return next(new AppError('Refresh token missing', 400));
+    }
+    const result: any = await refreshAccessToken(refreshToken);
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
 };

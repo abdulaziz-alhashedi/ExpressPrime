@@ -1,0 +1,129 @@
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:08:40.453Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:09:14.715Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: cd98624a-a825-4e52-b914-068a52db4088","timestamp":"2025-03-22T14:09:24.059Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 17bdc0f5-24cc-40e1-a706-b376972f2d79","timestamp":"2025-03-22T14:09:25.522Z"}
+{"level":"info","message":"GET /api/v1/users - TraceID: 341be320-1d45-4033-8e0a-4899458326f3","timestamp":"2025-03-22T14:10:29.090Z"}
+{"errorCode":"APP_ERROR","message":"Invalid token","statusCode":403,"timestamp":"2025-03-22T14:10:29.095Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:10:44.329Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:11:35.882Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:17:33.799Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:19:40.787Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:19:50.665Z"}
+{"level":"info","message":"GET /api/v1/users - TraceID: de544ffd-8d7e-4e94-9149-e32bb659dfeb","timestamp":"2025-03-22T14:20:51.647Z"}
+{"errorCode":"APP_ERROR","message":"Invalid token","statusCode":403,"timestamp":"2025-03-22T14:20:51.655Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 607109dd-f779-47c2-b095-aad2cde760b6","timestamp":"2025-03-22T14:20:56.231Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:21:20.503Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:22:51.238Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:27:54.296Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:32:44.609Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-22T14:36:21.768Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:35:48.977Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: d5ea1c3b-3b21-4e41-ba57-0b21bce2c159","timestamp":"2025-03-23T10:36:53.524Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: f9732b21-a5d1-494c-9911-f3b9c42bb622","timestamp":"2025-03-23T10:38:23.405Z"}
+{"level":"info","message":"POST /api/v1/auth/register - TraceID: 3b92a2a6-7d81-4874-959a-6875252fc5a9","timestamp":"2025-03-23T10:38:47.537Z"}
+{"errorCode":"APP_ERROR","message":"Provided password is weak. Please provide a stronger password.","statusCode":400,"timestamp":"2025-03-23T10:38:47.546Z"}
+{"level":"info","message":"POST /api/v1/auth/register - TraceID: 2a8ba99d-b119-43da-8924-606b278b8690","timestamp":"2025-03-23T10:39:17.159Z"}
+{"errorCode":"APP_ERROR","message":"Provided password is weak. Please provide a stronger password.","statusCode":400,"timestamp":"2025-03-23T10:39:17.161Z"}
+{"level":"info","message":"POST /api/v1/auth/register - TraceID: 581dd50d-8acd-46e2-9e77-29530c222751","timestamp":"2025-03-23T10:39:26.577Z"}
+{"errorCode":"APP_ERROR","message":"Provided password is weak. Please provide a stronger password.","statusCode":400,"timestamp":"2025-03-23T10:39:26.579Z"}
+{"level":"info","message":"POST /api/v1/auth/register - TraceID: 3c744369-9ab4-4a2e-bf82-caca01895ea8","timestamp":"2025-03-23T10:39:35.917Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:55:05.322Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:55:15.442Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:57:33.020Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:57:51.989Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T10:58:36.480Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:02:23.963Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:06:28.640Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:07:35.132Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:10:15.534Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:11:11.544Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:11:18.981Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:11:43.036Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:20:51.876Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:24:36.360Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T11:26:20.879Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:23:20.133Z"}
+{"level":"info","message":"POST /api/v1/auth/register - TraceID: 059f7a9b-43e2-488c-b280-1f1189de7485","timestamp":"2025-03-23T12:23:20.572Z"}
+{"errorCode":"APP_ERROR","message":"User already exists","statusCode":400,"timestamp":"2025-03-23T12:23:20.888Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 9e0907f4-e1d9-4db4-bba9-039e1ea07d3a","timestamp":"2025-03-23T12:23:28.209Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:27:47.601Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: b478c234-1b91-44d3-b570-f473d2fc1eaa","timestamp":"2025-03-23T12:28:02.903Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:29:34.975Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:30:07.700Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:41:29.446Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:41:56.263Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: afc6fd0a-8a68-46da-b174-343fea3247ef","timestamp":"2025-03-23T12:41:58.446Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T12:43:14.225Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: f124b757-b613-4778-ad6a-445893336982","timestamp":"2025-03-23T12:43:24.010Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:07:23.822Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:07:33.637Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:07:48.728Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:12:27.672Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:16:02.043Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:16:14.450Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: ea90e9a6-2829-4cc1-aa7a-c11e2fe772bd","timestamp":"2025-03-23T13:16:19.207Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:18:21.122Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:21:34.812Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:21:46.293Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 84573c46-6b34-463c-8be3-6073e8d859c0","timestamp":"2025-03-23T13:21:52.673Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 19fd2f9d-e7ca-4365-b367-a42a0a863787","timestamp":"2025-03-23T13:22:02.433Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:23:14.852Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:23:41.571Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 22a61fb1-9cc3-4db9-be44-a5840c0719ce","timestamp":"2025-03-23T13:23:47.470Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:23:57.943Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:25:44.084Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:28:31.937Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:28:41.889Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:28:54.443Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:29:08.159Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:35:15.747Z"}
+{"level":"info","message":"Server running on port 3000","timestamp":"2025-03-23T13:35:26.169Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:47:53.971Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:48:03.775Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 62b0d00e-6e2f-48da-b4b8-324a0b9e61f9","timestamp":"2025-03-23T13:48:07.305Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: da5bc552-d8c0-44d5-9c4e-35defbe9a508","timestamp":"2025-03-23T13:48:07.311Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 80f19dd0-2d10-42df-a978-b3f114d7ead7","timestamp":"2025-03-23T13:48:29.341Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: f6125f00-a52f-4bb5-a068-f4b1e79fa354","timestamp":"2025-03-23T13:48:29.417Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: 6b5ba2cf-1b94-465a-96ad-c27b1c697a81","timestamp":"2025-03-23T13:48:29.428Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 4ccad50a-e2e6-4649-b618-ff7bf77f74aa","timestamp":"2025-03-23T13:48:29.440Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: d3286e1c-d23c-4f34-bf22-dd12784f9b9e","timestamp":"2025-03-23T13:48:29.443Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: e0ca6a30-7a60-42ab-b2ae-4ea417b1e289","timestamp":"2025-03-23T13:48:29.847Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:59:24.813Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T13:59:35.847Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-23T14:00:33.632Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T08:59:08.619Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: c6844774-5b9c-410b-81ac-e87ded2156a6","timestamp":"2025-03-24T09:02:07.449Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: 6d6d9c41-3b0c-4415-8000-201c8103acdd","timestamp":"2025-03-24T09:02:07.454Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:56:39.464Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:57:43.892Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:58:39.887Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T09:59:47.419Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T10:08:14.471Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-24T10:08:46.916Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:16:59.677Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: a3c266b7-b6dc-4b82-827d-bb32a11c5d6a","timestamp":"2025-03-25T10:19:24.713Z"}
+{"level":"info","message":"GET /api/v1/health - TraceID: cc3aba25-b183-4161-b41b-4f2820a292a7","timestamp":"2025-03-25T10:19:24.719Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:20:04.384Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:30:27.132Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:31:08.698Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:31:37.277Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 1ffc470a-cb85-45aa-90ee-3dd012e2633c","timestamp":"2025-03-25T10:33:07.400Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: ab0c0852-d85d-4113-9f6d-876b54f1445f","timestamp":"2025-03-25T10:33:07.564Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: 0e58a6a3-34f0-410f-b334-bff3868b28ff","timestamp":"2025-03-25T10:33:07.569Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 9e47e8c3-9298-4464-aee2-0ccc6396e850","timestamp":"2025-03-25T10:33:07.580Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: bfedc785-8325-46ee-b571-d6c323534f1d","timestamp":"2025-03-25T10:33:07.583Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: 7575cef5-c77a-41cc-9383-fb3e3153dbb3","timestamp":"2025-03-25T10:33:14.389Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: 03f74370-1b9c-4280-9323-7c3f721102a6","timestamp":"2025-03-25T10:33:14.431Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: c75b5ec0-6fd3-4c52-8bf0-724d5549427a","timestamp":"2025-03-25T10:33:14.433Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 52327395-2bad-432e-ad32-83a37f4b1a2c","timestamp":"2025-03-25T10:33:14.440Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: ab20b46a-8863-4e97-bd36-eece8a537311","timestamp":"2025-03-25T10:33:14.447Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: 3c57047c-080f-433f-8529-963d31e84a86","timestamp":"2025-03-25T10:33:14.579Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:35:57.237Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:37:31.613Z"}
+{"level":"info","message":"GET /api/v1/docs/ - TraceID: cd0be8d0-96bc-4e02-929d-b2456a7191b4","timestamp":"2025-03-25T10:38:39.865Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui.css - TraceID: 6764ddac-fa6a-4052-8fbd-61fe680b7bca","timestamp":"2025-03-25T10:38:39.917Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-bundle.js - TraceID: fa5fc613-d71c-45ff-8167-60af7a679b91","timestamp":"2025-03-25T10:38:39.922Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-standalone-preset.js - TraceID: 80736634-4757-42cf-b4eb-9e7b00a9c383","timestamp":"2025-03-25T10:38:39.931Z"}
+{"level":"info","message":"GET /api/v1/docs/swagger-ui-init.js - TraceID: 75adce75-f1a4-40ea-bfd5-8502b3199bb3","timestamp":"2025-03-25T10:38:39.934Z"}
+{"level":"info","message":"GET /api/v1/docs/favicon-32x32.png - TraceID: 625d352d-a74d-49c2-bae3-6bfb1705b09c","timestamp":"2025-03-25T10:38:40.039Z"}
+{"level":"info","message":"Framework server running on port 3000","timestamp":"2025-03-25T10:49:33.906Z"}

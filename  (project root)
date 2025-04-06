@@ -1,0 +1,38 @@
+d:\express_F_S
+├── prisma
+│   ├── schema.prisma         // Prisma schema & migrations
+│   ├── seed.ts               // Seed file
+│   └── schema_exammple.prisma // Example Prisma schema
+├── scripts
+│   ├── createAdmin.ts        // Admin creation script
+│   └── generateApi.ts        // API generation tool
+├── src
+│   ├── controllers           // Request handlers
+│   │   ├── auth.controller.ts
+│   │   └── user.controller.ts
+│   ├── middlewares           // Custom Express middlewares
+│   │   ├── auth.middleware.ts
+│   │   ├── apiKey.middleware.ts
+│   │   ├── role.middleware.ts
+│   │   └── validation.middleware.ts
+│   ├── models                // ORM models/entities (if needed)
+│   ├── routes                // Route definitions
+│   │   ├── auth.routes.ts
+│   │   ├── external.routes.ts
+│   │   └── user.routes.ts
+│   └── utils                 // Utility functions & configurations
+│       ├── AppError.ts
+│       ├── HttpError.ts
+│       ├── logger.ts
+│       └── prisma.ts
+├── tests                     // Integration & unit tests
+│   └── app.test.ts
+├── docs                      // Documentation & API reference files
+│   ├── swagger.yaml          // Swagger API documentation
+│   ├── Express Template API.postman_collection.json // Postman collection
+│   └── update.md             // Project update & recommendations
+├── package.json              // Project configuration and scripts
+├── tsconfig.json             // TypeScript configuration
+├── .env                      // Environment variables
+├── .env.example              // Environment example file
+└── README.md                 // Project documentation
