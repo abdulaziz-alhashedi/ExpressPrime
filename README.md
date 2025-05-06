@@ -1,154 +1,177 @@
-# ExpressPrime
+# Express Template API
 
 A robust Express-based API template featuring secure authentication, role-based access control, input validation, and automated API module generation.
 
-## 🌟 Features
+## Features
 
-- **Authentication**: JWT-based authentication with refresh tokens and secure session management
-- **Authorization**: Role-based access control (ADMIN and USER roles)
-- **Validation**: Strong input validation using express-validator
-- **Security**: Comprehensive security measures with Helmet, CORS, rate limiting, and input sanitization
-- **API Generation**: Automated scaffolding via a custom generation script
-- **Logging**: Detailed request/response logging with winston and trace IDs
-- **Database**: Type-safe database access managed by Prisma ORM
-- **Configuration**: Strong environment variable management via envalid
-- **Documentation**: Extensive documentation for all aspects of the API
-- **Testing**: Comprehensive testing setup with Jest
-- **Deployment**: Multiple deployment options including Docker support
+- JWT-based authentication with refresh tokens.
+- Role-based authorization (with ADMIN and USER roles).
+- Input validation using express-validator.
+- Rate limiting and security middlewares (Helmet, CORS, mongoSanitize).
+- API scaffolding via a custom generation script.
+- Comprehensive logging with winston.
+- Database access managed by Prisma.
+- Environment variable management via envalid.
+- Detailed API documentation (Swagger and Postman collections).
 
-## 📋 Documentation
+## Project Structure
 
-This project includes comprehensive documentation to help you get started, understand the architecture, and deploy the API:
+// ...existing directory tree as documented in ModuleDocumentation.md...
 
-- [Getting Started](./Docs/GETTING-STARTED.md) - Setup and first steps
-- [API Reference](./Docs/api-reference.md) - Detailed API endpoints documentation
-- [Authentication](./Docs/authentication.md) - Authentication system and security
-- [Architecture](./Docs/ARCHITECTURE.md) - System design and components
-- [Error Codes](./Docs/error-codes.md) - Error handling and response formats
-- [Security](./Docs/SECURITY.md) - Security features and best practices
-- [Deployment](./Docs/DEPLOYMENT.md) - Deployment instructions for various environments
-- [Troubleshooting](./Docs/TROUBLESHOOTING.md) - Common issues and solutions
-- [Contributing](./Docs/CONTRIBUTING.md) - Guidelines for contributors
+## Setup Instructions
 
-## 🚀 Quick Start
+1. Copy `.env.example` to `.env` and update the configuration values.
+2. Run `npm install` to install dependencies.
+3. Run Prisma migrations with `npx prisma migrate dev`.
+4. (Optional) Seed the database with `npx ts-node prisma/seed.ts`.
+5. Start the application with `npm run start`.
+
+## Development
+
+- Use `npm run dev` for development with hot-reloading.
+- Use the generate API script (`npx ts-node scripts/generateApi.ts`) to scaffold new API modules.
+
+## Testing
+
+- Run tests with `npm test`.
+
+## 🛠️ Getting Started
 
 ### Prerequisites
 
 - Node.js (>= 14.x)
 - PostgreSQL (or your database configured via Prisma)
-- npm, yarn, or pnpm
+- Docker (optional, for containerized development)
 
 ### Installation
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/abdulaziz-alhashedi/ExpressPrime.git
-    cd ExpressPrime
+    git clone https://github.com/abdulaziz-alhashedi/express_F_S.git
+    cd express_F_S
     ```
 
 2. **Install dependencies**:
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    ```
+    - Using pnpm:
+      ```bash
+      pnpm install
+      ```
+    - Using npm:
+      ```bash
+      npm install
+      ```
+    - Using yarn:
+      ```bash
+      yarn install
+      ```
 
-3. **Configure environment**:
-    ```bash
-    cp .env.example .env
-    # Edit .env with your settings
-    ```
+3. **Set up environment variables**:
+    - Copy the `.env.example` to `.env` and update the values:
+      ```bash
+      cp .env.example .env
+      ```
 
-4. **Setup database**:
+4. **Database Setup with Prisma**:
     ```bash
     npx prisma generate
     npx prisma migrate dev
     ```
 
-5. **Start development server**:
+### Running the Application
+
+- **Development**:
+  ```bash
+  pnpm dev
+  ```
+- **Production**:
+  ```bash
+  pnpm build
+  pnpm start
+  ```
+
+### Using Docker
+
+1. **Build and run containers**:
     ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
+    docker-compose up --build
     ```
+2. The app will be accessible at `http://localhost:3000`.
 
-The API will be available at [http://localhost:3000](http://localhost:3000)
+## 📚 API Documentation
 
-## 📚 API Testing
+- **Swagger (OpenAPI 3.0)**:  
+  Access at [http://localhost:3000/api/v1/docs](http://localhost:3000/api/v1/docs)
 
-### Swagger Documentation
+- **Postman Collection**:  
+  Import the provided Postman collection (`postman_collection.json`) and configure the `{{base_url}}` variable as needed.
 
-Access the interactive API documentation at [http://localhost:3000/api/v1/docs](http://localhost:3000/api/v1/docs)
+## ⚙️ Utility Scripts
 
-### Postman Collection
-
-Import the provided Postman collection:
-```
-postman_collection.json
-```
-
-## ⚙️ Core Modules
-
-- **Authentication**: User registration, login, token refresh, and profile access
-- **User Management**: CRUD operations for users (admin only)
-- **External Integrations**: Template for integrating third-party services
-- **Health Monitoring**: System health and status endpoint
-
-## 🔧 Utility Scripts
-
-- **Generate API Module**:
+- **Generate New API Endpoint**:  
+  Run the CLI tool to scaffold a new API:
   ```bash
-  npx ts-node scripts/generateApi.ts
+  ts-node scripts/generateApi.ts
   ```
-  Creates a new API module with controller, service, routes, and tests
 
-- **Create Admin User**:
+- **Create an Admin User**:  
+  Use the CLI admin script:
   ```bash
-  npx ts-node scripts/createAdmin.ts
+  ts-node scripts/createAdmin.ts
   ```
-  Creates an admin user with elevated privileges
 
-## 🔐 Security Features
+## 🔒 Security & Role-Based Access
 
-- JWT-based authentication with separate access and refresh tokens
-- Strong password policy enforcement with secure hashing
-- Protection against common vulnerabilities (XSS, CSRF, injection attacks)
-- Rate limiting to prevent brute force attacks
-- Request tracing with unique IDs for security auditing
+- Users registering via `/api/v1/auth/register` are forced to have the role `USER`.
+- Only admin users can create, update, or delete other users via `/api/v1/users`.
+- A dedicated middleware (`authenticateJWT`) and role checks ensure only authorized access to admin endpoints.
 
-## 🌐 Deployment Options
+## 📂 Project Structure
 
-- Traditional server deployment with PM2
-- Docker containerization
-- Cloud provider deployments (AWS, Azure, GCP)
-- Serverless deployment
-
-For detailed deployment instructions, see the [Deployment Guide](./Docs/DEPLOYMENT.md).
-
-## 🧪 Testing
-
-Run tests with:
-```bash
-npm test
-# or
-yarn test
-# or
-pnpm test
+```
+...existing tree structure...
+├── src
+│   ├── controllers           // Slimmed controllers that delegate to services
+│   ├── middlewares           // Security, validation, and rate limiting
+│   ├── routes                // API route definitions
+│   ├── services              // New service layer with business logic
+│   └── utils                 // Utility functions & configurations
+...existing code...
 ```
 
-## 👥 Contributing
+- **src**: Contains controllers, routes, middlewares, and utilities.
+- **prisma**: Holds the Prisma schema and migration files.
+- **scripts**: Includes CLI scripts for API generation and admin creation.
+- **tests**: Contains automated tests for API endpoints.
+- **CHANGELOG.md**: Summarizes recent changes.
 
-Contributions are welcome! Please read the [Contributing Guidelines](./Docs/CONTRIBUTING.md) before submitting a pull request.
+## Architecture Overview
+
+This project is designed for scalability and maintainability. Key design decisions and recent improvements include:
+- Modular structure with clear separation of controllers, services, middlewares, routes, and utilities.
+- Unified password validation using a dedicated utility so that both request validators and service logic enforce a minimum of 10 characters with mixed case, digit, and special character.
+- A singleton PrismaClient to prevent duplicate connections and improve graceful shutdown across environments.
+- Environment-specific logging configuration: development uses verbose console and file logging with colorization, while production logs are structured and less verbose.
+- Robust configuration using envalid to consolidate .env files.
+- Enhanced testing and API scaffolding with shared helper functions to promote DRY principles.
+- Comprehensive documentation linking the core modules, usage instructions, and extension guidelines.
+- Deep Dive: For an in-depth analysis of our architecture, scalability, modularity, and security enhancements, please refer to the following documents:
+  - [Module Documentation](./Docs/ModuleDocumentation.md)
+  - [Database Schema](./Docs/database-schema.md)
+  - [Error Codes](./Docs/error-codes.md)
+  - [Authentication](./Docs/authentication.md)
+  - [API Reference](./Docs/api-reference.md)
+  - [Getting Started](./Docs/getting-started.md)
+  - [Introduction](./Docs/introduction.md)
+
+For more details, please see the [Module Documentation](./Docs/ModuleDocumentation.md) and [Usage Documentation](./Docs/USAGE.md).
+
+## 🤝 Contributing
+
+We welcome contributions! Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
-
-Built with ❤️ for modern API development.
+Happy coding!
 
