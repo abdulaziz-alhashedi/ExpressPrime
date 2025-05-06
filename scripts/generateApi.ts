@@ -13,7 +13,7 @@ function ask(question: string): Promise<string> {
 
 async function generateApi() {
   try {
-    const apiNameInput = (await ask('Enter API name (Example., Todo): ')).trim();
+    const apiNameInput = (await ask('Enter API name (Example: Task): ')).trim();
     if (!apiNameInput) {
       console.error('API name cannot be empty. Please try again.');
       rl.close();
